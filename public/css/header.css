@@ -11,40 +11,33 @@ header {
 
 .title {
     margin-left: 0.5em;
-    margin-right: 2em;
-    font-size: 2.5em;
+    margin-right: 1.5em;
+    font-size: 2em;
     font-weight: bold;
     color: white;
 }
 
-.login-btn {
-    background-color: transparent;
-    border-color: white;
+header a {
+    border: 2px solid white;
     border-radius: 20px;
-
-    width: 200px;
-    color: white;
+    padding: 0.4em 2.2em;
     margin: 0.3em;
     line-height: 1.7em;
-
+    text-decoration: none;
     font-family: "Aleo";
     font-weight: normal;
-    font-size: 1.6em;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: white;
 }
 
 .signup-btn {
     background-color: white;
-    border-color: white;
-    border-radius: 20px;
-
-    width: 200px;
     color: black;
-    margin: 0.3em;
-    line-height: 1.7em;
-
-    font-family: "Aleo";
-    font-weight: normal;
-    font-size: 1.6em;
 }
 
 .navbar {
@@ -66,22 +59,30 @@ header {
     border: none;
     outline: none;
     color: white;
-    font-size: 1.6em;
+    font-size: 1.4em;
     padding: 1em;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.navbar button:hover {
+    color: #C3FCF1;
 }
 
 .dropdown .dropbtn {
     border: none;
     outline: none;
     color: white;
-    font-size: 1.6em;
+    font-size: 1.4em;
     padding: 1em;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
 }
 
 .dropdown-content {

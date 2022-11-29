@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
     <title>HOME PAGE</title>
@@ -23,8 +23,8 @@
                 <button>Browse art</button>
                 <button>Dashboard</button>
             </div>
-            <div><button class="login-btn">Login</button>
-                <button class="signup-btn">Sign up</button>
+            <div><a class="login-btn" href="#popup-login">Login</a>
+                <a class="signup-btn" href="#popup-signup">Sign up</a>
             </div>
         </header>
         <main class="home-page">
@@ -35,5 +35,34 @@
                 <button class="big-btn">GET STARTED</button>
             </div>
         </main>
+
+        <div id="popup-login" class="overlay">
+            <div class="popup">
+                <h2>Login</h2>
+                <a class="close" href="#">&times;</a>
+                <form>
+                    <h3>Email</h3>
+                    <input name="email" type="text">
+                    <h3>Password</h3>
+                    <input name="password" type="password">
+                    <button>LOGIN</button>
+                </form>
+            </div>
+        </div>
+        <div id="popup-signup" class="overlay">
+            <div class="popup">
+                <h2>Sign up</h2>
+                <a class="close" href="#">&times;</a>
+                <form>
+                    <h3>Email</h3>
+                    <input name="email" type="text">
+                    <h3>Password</h3>
+                    <input name="password" type="password">
+                    <h3>Repeat password</h3>
+                    <input name="password-repeated" type="password">
+                    <button>SIGN UP</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
