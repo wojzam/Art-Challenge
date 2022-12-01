@@ -32,7 +32,9 @@
                 <h1>Welcome to Art Challenge</h1>
                 <h2>no matter if you are a professional or beginner,<br>
                     joins us today and improve your art</h2>
-                <button class="big-btn">GET STARTED</button>
+                <form action="#popup-login">
+                    <button class="big-btn" type="submit">GET STARTED</button>
+                </form>
             </div>
         </main>
 
@@ -45,7 +47,11 @@
                     <input name="email" type="text">
                     <h3>Password</h3>
                     <input name="password" type="password">
-                    <button>LOGIN</button>
+                    <button type="submit">LOGIN</button>
+                    <div class="row-a">
+                        <p>Don't have an account? Sign up for&nbsp</p>
+                        <a href="#popup-signup">ArtChallenge</a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -61,6 +67,10 @@
                     <h3>Repeat password</h3>
                     <input name="password-repeated" type="password">
                     <button>SIGN UP</button>
+                    <div class="row-a">
+                        <p>Already have an account?&nbsp</p>
+                        <a href="#popup-login">Sign in</a>
+                    </div>
                 </form>
             </div>
         </div>
