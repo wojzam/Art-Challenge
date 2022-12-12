@@ -11,18 +11,41 @@ class SecurityController extends AppController
         $user = new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow');
 
         if (!$this->isPost()) {
-            return $this->render('home');
+            return $this->render('login');
         }
 
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         if ($user->getEmail() !== $email) {
-            return $this->render('home', ['messages' => ['User with this email not exist!']]);
+            return $this->render('login', ['messages' => ['User with this email not exist!']]);
         }
 
         if ($user->getPassword() !== $password) {
-            return $this->render('home', ['messages' => ['Wrong password!']]);
+            return $this->render('login', ['messages' => ['Wrong password!']]);
+        }
+
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/userCollection");
+    }
+
+    public function signup()
+    {
+        $user = new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow');
+
+        if (!$this->isPost()) {
+            return $this->render('signup');
+        }
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        if ($user->getEmail() !== $email) {
+            return $this->render('signup', ['messages' => ['User with this email not exist!']]);
+        }
+
+        if ($user->getPassword() !== $password) {
+            return $this->render('signup', ['messages' => ['Wrong password!']]);
         }
 
         $url = "http://$_SERVER[HTTP_HOST]";

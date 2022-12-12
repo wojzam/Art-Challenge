@@ -9,5 +9,6 @@ Router::get('', 'DefaultController');
 Router::get('userCollection', 'DefaultController');
 Router::get('joinChallenge', 'DefaultController');
 Router::post('login', 'SecurityController');
+Router::post('signup', 'SecurityController');
 
 Router::run($path);

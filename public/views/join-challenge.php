@@ -18,8 +18,9 @@
                 <a>Browse art</a>
                 <a href="userCollection">Dashboard</a>
             </div>
-            <div class="nav-btn"><a class="login-btn" href="#popup-login">Login</a>
-                <a class="signup-btn" href="#popup-signup">Sign up</a>
+            <div class="nav-btn">
+                <a class="login-btn" href="login">Login</a>
+                <a class="signup-btn" href="signup">Sign up</a>
             </div>
         </header>
         <main>

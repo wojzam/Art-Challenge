@@ -10,7 +10,7 @@ body {
 main {
   width: 100%;
   height: 100%;
-  background: transparent linear-gradient(180deg, #FF9700 0%, white 100%) 0% 0% no-repeat padding-box;
+  background: linear-gradient(180deg, #FF9700 0%, white 100%) 0% 0% no-repeat padding-box;
   background-size: 100% 300px;
   margin-top: 80px;
   display: flex;
@@ -60,40 +60,16 @@ h2 {
   background: #262626;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
-  overflow: auto;
-}
-
-.popup {
-  margin: 110px auto;
-  padding: 4em 2em;
+.form-page {
   background: white;
-  border-radius: 20px;
-  width: 400px;
-  position: relative;
+  padding-top: 10vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  transition: all 5s ease-in-out;
 }
 
-.popup h2 {
+.form-page h2 {
   color: black;
   font-size: 2.5em;
   font-family: "Aleo";
@@ -101,27 +77,13 @@ h2 {
   margin-bottom: 2em;
 }
 
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-
-.popup .close:hover {
-  color: #005247;
-}
-
-.popup form {
+.form-page form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.popup h3 {
+.form-page h3 {
   color: black;
   font-size: 1.5em;
   font-family: "Aleo";
@@ -129,7 +91,7 @@ h2 {
   margin-bottom: 0.1em;
 }
 
-.popup input {
+.form-page input {
   background-color: transparent;
   border: 1px solid black;
   border-radius: 20px;
@@ -139,7 +101,7 @@ h2 {
   margin-bottom: 0.4em;
 }
 
-.popup button {
+.form-page button {
   background: #005247;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 30px;

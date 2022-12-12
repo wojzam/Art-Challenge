@@ -9,7 +9,7 @@ class DefaultController extends AppController
     {
         $this->render('home');
     }
-
+    
     public function userCollection()
     {
         $this->render('user-collection');
