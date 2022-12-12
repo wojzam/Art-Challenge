@@ -105,8 +105,7 @@ h2 {
   position: absolute;
   top: 20px;
   right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   text-decoration: none;
   color: #333;
@@ -127,7 +126,7 @@ h2 {
   font-size: 1.5em;
   font-family: "Aleo";
   font-weight: normal;
-  margin-bottom: 0em;
+  margin-bottom: 0.1em;
 }
 
 .popup input {
@@ -137,7 +136,7 @@ h2 {
   background-color: lightgray;
   font-size: 1.1em;
   padding: 0.7em 1em;
-  margin: 1em 0em;
+  margin-bottom: 0.4em;
 }
 
 .popup button {
