@@ -11,20 +11,7 @@
 
 <body>
     <div class="container">
-        <header>
-            <div class="navbar">
-                <p class="title">Art Challenge</p>
-                <a href="joinChallenge">Challenges</a>
-                <a>Browse art</a>
-                <a href="userCollection">Dashboard</a>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">UserName</button>
-                <div class="dropdown-content">
-                    <a href="#">Log out</a>
-                </div>
-            </div>
-        </header>
+        <?php include 'header.php'; ?>
         <main>
             <div class="content-container">
                 <h1>My Collection</h1>

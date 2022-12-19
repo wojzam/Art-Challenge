@@ -10,18 +10,7 @@
 
 <body>
     <div class="container">
-        <header>
-            <div class="navbar">
-                <p class="title">Art Challenge</p>
-                <a href="joinChallenge">Challenges</a>
-                <a>Browse art</a>
-                <a href="userCollection">Dashboard</a>
-            </div>
-            <div class="nav-btn">
-                <a class="login-btn" href="login">Login</a>
-                <a class="signup-btn" href="signup">Sign up</a>
-            </div>
-        </header>
+        <?php include 'header.php'; ?>
         <main class="form-page">
             <div>
                 <h2>Sign up</h2>
