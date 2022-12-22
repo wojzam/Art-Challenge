@@ -1,6 +1,7 @@
 <?php
 
-class Entry {
+class Entry
+{
     private $title;
     private $image;
 

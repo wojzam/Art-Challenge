@@ -1,11 +1,12 @@
 <?php
 
 require_once 'AppController.php';
-require_once __DIR__ .'/../models/Entry.php';
+require_once __DIR__ . '/../models/Entry.php';
 
-class EntryController extends AppController {
+class EntryController extends AppController
+{
 
-    const MAX_FILE_SIZE = 1024*1024;
+    const MAX_FILE_SIZE = 1024 * 1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
@@ -16,7 +17,7 @@ class EntryController extends AppController {
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
             move_uploaded_file(
                 $_FILES['file']['tmp_name'],
-                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
+                dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
             );
 
             // TODO create new project object and save it in database

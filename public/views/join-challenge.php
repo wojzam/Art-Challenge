@@ -10,21 +10,24 @@
 </head>
 
 <body>
-    <div class="container">
-        <?php include 'header.php'; ?>
-        <main>
-            <div class="content-container">
-                <h1>Join challenge</h1>
-                <div><button class="big-btn">Quick</button>
-                    <p class="description">three hours</p>
-                </div>
-                <div><button class="big-btn">Normal</button>
-                    <p class="description">one day</p>
-                </div>
-                <div><button class="big-btn">Marathon</button>
-                    <p class="description">one week</p>
-                </div>
+<div class="container">
+    <?php include 'header.php'; ?>
+    <main>
+        <div class="content-container">
+            <h1>Join challenge</h1>
+            <div>
+                <button class="big-btn">Quick</button>
+                <p class="description">three hours</p>
             </div>
-        </main>
-    </div>
+            <div>
+                <button class="big-btn">Normal</button>
+                <p class="description">one day</p>
+            </div>
+            <div>
+                <button class="big-btn">Marathon</button>
+                <p class="description">one week</p>
+            </div>
+        </div>
+    </main>
+</div>
 </body>

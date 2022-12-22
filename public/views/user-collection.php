@@ -10,20 +10,20 @@
 </head>
 
 <body>
-    <div class="container">
-        <?php include 'header.php'; ?>
-        <main>
-            <div class="content-container">
-                <h1>My Collection</h1>
-                <div class="grid-container">
-                    <img src="public/img/drawing_cat_1.png" class="collection-image">
-                    <img src="public/img/drawing_cat_2.png" class="collection-image">
-                    <img src="public/img/drawing_cat_3.png" class="collection-image">
-                    <img src="public/img/drawing_landscape_1.png" class="collection-image">
-                    <img src="public/img/drawing_landscape_2.png" class="collection-image">
-                    <img src="public/img/drawing_face.png" class="collection-image">
-                </div>
+<div class="container">
+    <?php include 'header.php'; ?>
+    <main>
+        <div class="content-container">
+            <h1>My Collection</h1>
+            <div class="grid-container">
+                <img src="public/img/drawing_cat_1.png" class="collection-image">
+                <img src="public/img/drawing_cat_2.png" class="collection-image">
+                <img src="public/img/drawing_cat_3.png" class="collection-image">
+                <img src="public/img/drawing_landscape_1.png" class="collection-image">
+                <img src="public/img/drawing_landscape_2.png" class="collection-image">
+                <img src="public/img/drawing_face.png" class="collection-image">
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 </body>
