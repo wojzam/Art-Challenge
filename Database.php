@@ -1,8 +1,7 @@
 <?php
 
-require_once "config.php";
-
-class Database {
+class Database
+{
     private $username;
     private $password;
     private $host;
@@ -10,10 +9,10 @@ class Database {
 
     public function __construct()
     {
-        $this->username = USERNAME;
-        $this->password = PASSWORD;
-        $this->host = HOST;
-        $this->database = DATABASE;
+        $this->username = $_ENV['DB_USER'];
+        $this->password = $_ENV['DB_PASSWORD'];
+        $this->host = $_ENV['DB_HOST'];
+        $this->database = $_ENV['DB_NAME'];
     }
 
     public function connect()
@@ -23,14 +22,13 @@ class Database {
                 "pgsql:host=$this->host;port=5432;dbname=$this->database",
                 $this->username,
                 $this->password,
-                ["sslmode"  => "prefer"]
+                ["sslmode" => "prefer"]
             );
 
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
-        }
-        catch(PDOException $e) {
+        } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
     }
