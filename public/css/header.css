@@ -7,15 +7,51 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #212121;
+    font-family: "Aleo", serif;
+    color: white;
 }
 
-.title {
-    margin-left: 0.5em;
+header * {
+    font-family: inherit;
+    color: inherit;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: normal;
+}
+
+.title-container .title {
+    margin-left: 0.8em;
     margin-right: 1.5em;
     font-size: 2em;
     font-weight: bold;
-    color: white;
+    padding: 0;
     white-space: nowrap;
+}
+
+.title-container .title:hover {
+    color: white;
+}
+
+.navbar a {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1.4em;
+    padding: 1em;
+    background-color: inherit;
+    margin: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.navbar a:hover {
+    color: #C3FCF1;
 }
 
 .nav-btn {
@@ -29,7 +65,6 @@ header {
     margin: 0.3em;
     line-height: 1em;
     text-decoration: none;
-    font-family: "Aleo";
     font-size: 1.4em;
     white-space: nowrap;
     cursor: pointer;
@@ -45,34 +80,6 @@ header {
     color: black;
 }
 
-.navbar {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-family: "Aleo";
-    font-weight: normal;
-    color: white;
-}
-
-.navbar a {
-    text-decoration: none;
-    border: none;
-    outline: none;
-    color: white;
-    font-size: 1.4em;
-    padding: 1em;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
-}
-
-.navbar a:hover {
-    color: #C3FCF1;
-}
-
 .dropdown {
     padding: 2em;
     margin: 0.7em 2.2em;
@@ -81,10 +88,8 @@ header {
 .dropbtn {
     border: none;
     outline: none;
-    color: white;
     font-size: 1.4em;
     background-color: inherit;
-    font-family: "Aleo";
     cursor: pointer;
 }
 
@@ -94,14 +99,13 @@ header {
     margin-top: 0.5em;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
 .dropdown-content a {
     float: none;
     color: black;
-    font-family: "Aleo";
     font-size: 1em;
     padding: 12px 16px;
     text-decoration: none;
