@@ -1,6 +1,8 @@
 <header>
     <div class="navbar">
-        <p class="title"> Art Challenge </p>
+        <div class="title-container">
+            <a class="title" href="/"> Art Challenge </a>
+        </div>
         <a href="joinChallenge"> Challenges</a>
         <a href="userCollection"> Browse art </a>
         <a href="dashboard"> Dashboard</a>
