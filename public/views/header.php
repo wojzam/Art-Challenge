@@ -2,8 +2,8 @@
     <div class="navbar">
         <p class="title"> Art Challenge </p>
         <a href="joinChallenge"> Challenges</a>
-        <a> Browse art </a>
-        <a href="userCollection"> Dashboard</a>
+        <a href="userCollection"> Browse art </a>
+        <a href="dashboard"> Dashboard</a>
     </div>
     <div class="nav-btn">
         <a class="login-btn" href="login"> Login</a>
