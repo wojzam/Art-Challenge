@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
-    <title>LOGIN PAGE</title>
+    <title>LOGIN</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     <main class="form-page">
         <div>
             <h2>Login</h2>
-            <form class="login" action="login" method="POST">
+            <form action="login" method="POST">
                 <div class="messages">
                     <?php
                     if (isset($messages)) {

@@ -7,10 +7,11 @@ $path = parse_url($path, PHP_URL_PATH);
 
 Router::get('', 'DefaultController');
 Router::get('userCollection', 'DefaultController');
+Router::get('browseArt', 'DefaultController');
 Router::get('joinChallenge', 'DefaultController');
-Router::get('dashboard', 'DefaultController');
+Router::get('challenge', 'DefaultController');
 Router::post('login', 'SecurityController');
 Router::post('signup', 'SecurityController');
-Router::post('addEntry', 'EntryController');
+Router::post('uploadEntry', 'EntryController');
 
 Router::run($path);

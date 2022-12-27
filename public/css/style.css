@@ -2,6 +2,11 @@ body {
     margin: 0;
 }
 
+body * {
+    font-family: "Aleo", serif;
+    transition: all 0.3s ease;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -10,7 +15,7 @@ body {
 main {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, #FF9700 0%, white 100%) 0% 0% no-repeat padding-box;
+    background: linear-gradient(180deg, #FF9700 0%, white 100%) 0 0 no-repeat padding-box;
     background-size: 100% 300px;
     margin-top: 80px;
     display: flex;
@@ -27,22 +32,20 @@ main {
 
 h1 {
     font-size: 5em;
-    font-family: "Aleo";
     font-weight: normal;
     margin-bottom: 0.4em;
 }
 
 h2 {
     font-size: 2.5em;
-    font-family: "Aleo";
     font-weight: normal;
     margin-top: 0.4em;
     margin-bottom: 3em;
 }
 
 .big-btn {
-    background: transparent linear-gradient(180deg, #000000 0%, #262626 100%) 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
+    background: transparent linear-gradient(180deg, #000000 0%, #262626 100%);
+    box-shadow: 0 3px 6px #00000029;
     border-radius: 30px;
 
     width: 400px;
@@ -50,14 +53,14 @@ h2 {
     color: white;
     line-height: 2.3em;
 
-    font-family: "Cairo";
+    font-family: "Cairo", serif;
     font-weight: bold;
     font-size: 2.5em;
     cursor: pointer;
 }
 
 .big-btn:hover {
-    background: #262626;
+    background: transparent linear-gradient(180deg, #313131 0%, #262626 100%);
 }
 
 .form-page {
@@ -72,7 +75,6 @@ h2 {
 .form-page h2 {
     color: black;
     font-size: 2.5em;
-    font-family: "Aleo";
     font-weight: bold;
     margin-bottom: 2em;
 }
@@ -86,24 +88,30 @@ h2 {
 .form-page h3 {
     color: black;
     font-size: 1.5em;
-    font-family: "Aleo";
     font-weight: normal;
     margin-bottom: 0.1em;
 }
 
 .form-page input {
-    background-color: transparent;
+    background-color: lightgray;
     border: 1px solid black;
     border-radius: 20px;
-    background-color: lightgray;
     font-size: 1.1em;
+    padding: 0.7em 1em;
+    margin-bottom: 0.4em;
+}
+
+.form-page .file-input {
+    background-color: transparent;
+    border: none;
+    font-size: 1em;
     padding: 0.7em 1em;
     margin-bottom: 0.4em;
 }
 
 .form-page button {
     background: #005247;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0 3px 6px #00000029;
     border-radius: 30px;
 
     width: 350px;
@@ -111,11 +119,15 @@ h2 {
     color: white;
     line-height: 2em;
 
-    font-family: "Cairo";
+    font-family: "Cairo", serif;
     font-weight: bold;
     font-size: 1.5em;
     margin-top: 3em;
     cursor: pointer;
+}
+
+.form-page button:hover {
+    background: #00bda2;
 }
 
 .row-a {
@@ -126,6 +138,10 @@ h2 {
     margin-top: 1em;
 
     font-size: 1em;
-    font-family: "Aleo";
     font-weight: lighter;
+}
+
+.row-a a:visited {
+    text-decoration: none;
+    color: inherit;
 }

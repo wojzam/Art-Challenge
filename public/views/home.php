@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
-    <title>HOME PAGE</title>
+    <title>HOME</title>
 </head>
 
 <body>

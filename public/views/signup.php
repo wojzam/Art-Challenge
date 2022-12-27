@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
-    <title>SIGNUP PAGE</title>
+    <title>SIGNUP</title>
 </head>
 
 <body>
@@ -14,13 +14,24 @@
     <main class="form-page">
         <div>
             <h2>Sign up</h2>
-            <form>
+            <form action="signup" method="POST">
+                <div class="messages">
+                    <?php
+                    if (isset($messages)) {
+                        foreach ($messages as $message) {
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
+                <h3>Username</h3>
+                <input name="username" type="text">
                 <h3>Email</h3>
                 <input name="email" type="text">
                 <h3>Password</h3>
                 <input name="password" type="password">
                 <h3>Repeat password</h3>
-                <input name="password-repeated" type="password">
+                <input name="passwordRepeated" type="password">
                 <button>SIGN UP</button>
                 <div class="row-a">
                     <p>Already have an account?&nbsp</p>

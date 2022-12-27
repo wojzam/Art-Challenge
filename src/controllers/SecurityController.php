@@ -7,10 +7,16 @@ require_once __DIR__ . '/../repository/UserRepository.php';
 class SecurityController extends AppController
 {
 
+    private $userRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
+
     public function login()
     {
-        $userRepository = new UserRepository();
-
         if (!$this->isPost()) {
             return $this->render('login');
         }
@@ -18,7 +24,7 @@ class SecurityController extends AppController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = $userRepository->getUser($email);
+        $user = $this->userRepository->getUser($email);
 
         if (!$user) {
             return $this->render('login', ['messages' => ['User not found!']]);
@@ -38,24 +44,23 @@ class SecurityController extends AppController
 
     public function signup()
     {
-        $user = new User('jsnow@pk.edu.pl', 'admin', 'Johnny', 'Snow');
-
         if (!$this->isPost()) {
             return $this->render('signup');
         }
 
+        $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $passwordRepeated = $_POST['passwordRepeated'];
 
-        if ($user->getEmail() !== $email) {
-            return $this->render('signup', ['messages' => ['User with this email not exist!']]);
+        if ($password !== $passwordRepeated) {
+            return $this->render('signup', ['messages' => ['Passwords do not match']]);
         }
 
-        if ($user->getPassword() !== $password) {
-            return $this->render('signup', ['messages' => ['Wrong password!']]);
-        }
+        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $username);
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/userCollection");
+        $this->userRepository->addUser($user);
+
+        return $this->render('signup', ['messages' => ['You\'ve been succesfully registrated!']]);
     }
 }

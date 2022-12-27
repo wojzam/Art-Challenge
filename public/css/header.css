@@ -3,24 +3,25 @@ header {
     height: 80px;
     position: fixed;
     top: 0;
+    z-index: 1000;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     background-color: #212121;
-    font-family: "Aleo", serif;
-    color: white;
 }
 
 header * {
-    font-family: inherit;
-    color: inherit;
+    font-family: "Aleo", serif;
+    color: white;
+    font-weight: normal;
 }
 
 .navbar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-weight: normal;
 }
 
 .title-container .title {
@@ -47,7 +48,6 @@ header * {
     margin: 0;
     white-space: nowrap;
     cursor: pointer;
-    transition: all 0.3s ease-out;
 }
 
 .navbar a:hover {
@@ -59,10 +59,13 @@ header * {
 }
 
 .nav-btn a {
+    display: inline-block;
+    width: 80px;
     border: 2px solid white;
     border-radius: 20px;
     padding: 0.4em 2.2em;
     margin: 0.3em;
+    text-align: center;
     line-height: 1em;
     text-decoration: none;
     font-size: 1.4em;
@@ -85,7 +88,7 @@ header * {
     margin: 0.7em 2.2em;
 }
 
-.dropbtn {
+.drop-btn {
     border: none;
     outline: none;
     font-size: 1.4em;

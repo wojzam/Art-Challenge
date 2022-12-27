@@ -6,13 +6,13 @@ require_once __DIR__ . '/../models/Entry.php';
 class EntryController extends AppController
 {
 
-    const MAX_FILE_SIZE = 1024 * 1024;
+    const MAX_FILE_SIZE = 1920 * 1920;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
     private $message = [];
 
-    public function addEntry()
+    public function uploadEntry()
     {
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
             move_uploaded_file(
@@ -21,11 +21,11 @@ class EntryController extends AppController
             );
 
             // TODO create new project object and save it in database
-            $project = new Entry($_POST['title'], $_FILES['file']['name']);
+            $project = new Entry("title", $_FILES['file']['name']);
 
-            return $this->render('dashboard', ['messages' => $this->message]);
+            return $this->render('challenge', ['messages' => $this->message]);
         }
-        return $this->render('dashboard', ['messages' => $this->message]);
+        return $this->render('challenge', ['messages' => $this->message]);
     }
 
     private function validate(array $file): bool
