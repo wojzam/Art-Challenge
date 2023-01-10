@@ -77,6 +77,7 @@ h2 {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 2em;
+    text-align: center;
 }
 
 .form-page form {
@@ -109,7 +110,7 @@ h2 {
     margin-bottom: 0.4em;
 }
 
-.form-page button {
+.submit-btn {
     background: #005247;
     box-shadow: 0 3px 6px #00000029;
     border-radius: 30px;
@@ -126,8 +127,18 @@ h2 {
     cursor: pointer;
 }
 
-.form-page button:hover {
+.submit-btn:hover {
     background: #00bda2;
+}
+
+.dark-version {
+    background: black;
+    margin-top: 1.5em;
+    margin-bottom: 4em;
+}
+
+.dark-version:hover {
+    background: #005247;
 }
 
 .row-a {
@@ -144,4 +155,10 @@ h2 {
 .row-a a:visited {
     text-decoration: none;
     color: inherit;
+}
+
+.messages {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
 }

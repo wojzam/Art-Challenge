@@ -24,7 +24,7 @@ class SecurityController extends AppController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-       // $user = $this->userRepository->getUser($email);
+        // $user = $this->userRepository->getUser($email);
 
         session_start();
         $_SESSION['logged_in'] = true;
@@ -73,8 +73,8 @@ class SecurityController extends AppController
     {
         //session_destroy();
         unset($_SESSION['logged_in']);
-        setcookie('session_id', '',  time() - 3600);
-        setcookie('username', '',  time() - 3600);
+        setcookie('session_id', '', time() - 3600);
+        setcookie('username', '', time() - 3600);
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}");

@@ -15,17 +15,9 @@
         <h1>Draw cat</h1>
         <h2>UPLOAD YOUR ENTRY</h2>
         <form action="uploadEntry" method="POST" ENCTYPE="multipart/form-data">
-            <div class="messages">
-                <?php
-                if (isset($messages)) {
-                    foreach ($messages as $message) {
-                        echo $message;
-                    }
-                }
-                ?>
-            </div>
+            <?php include 'message-display.php'; ?>
             <input class="file-input" type="file" name="file"/><br/>
-            <button type="submit">UPLOAD</button>
+            <button class="submit-btn" type="submit">UPLOAD</button>
         </form>
     </main>
 </div>

@@ -15,7 +15,8 @@
     <div id="user-settings">
         <button class="drop-btn"><?php echo $_COOKIE['username']; ?></button>
         <div class="dropdown-content">
-            <a href="logout" >Log out</a>
+            <a href="settings">Settings</a>
+            <a href="logout">Log out</a>
         </div>
     </div>
 </header>

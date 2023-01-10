@@ -15,15 +15,7 @@
         <div>
             <h2>Sign up</h2>
             <form action="signup" method="POST">
-                <div class="messages">
-                    <?php
-                    if (isset($messages)) {
-                        foreach ($messages as $message) {
-                            echo $message;
-                        }
-                    }
-                    ?>
-                </div>
+                <?php include 'message-display.php'; ?>
                 <h3>Username</h3>
                 <input name="username" type="text">
                 <h3>Email</h3>
@@ -32,7 +24,7 @@
                 <input name="password" type="password">
                 <h3>Repeat password</h3>
                 <input name="passwordRepeated" type="password">
-                <button>SIGN UP</button>
+                <button class="submit-btn" type="submit">SIGN UP</button>
                 <div class="row-a">
                     <p>Already have an account?&nbsp</p>
                     <a href="login">Sign in</a>

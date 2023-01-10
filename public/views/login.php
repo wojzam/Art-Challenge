@@ -15,20 +15,12 @@
         <div>
             <h2>Login</h2>
             <form action="login" method="POST">
-                <div class="messages">
-                    <?php
-                    if (isset($messages)) {
-                        foreach ($messages as $message) {
-                            echo $message;
-                        }
-                    }
-                    ?>
-                </div>
+                <?php include 'message-display.php'; ?>
                 <h3>Email</h3>
                 <input name="email" type="text">
                 <h3>Password</h3>
                 <input name="password" type="password">
-                <button type="submit">LOGIN</button>
+                <button class="submit-btn" type="submit">LOGIN</button>
                 <div class="row-a">
                     <p>Don't have an account? Sign up for&nbsp</p>
                     <a href="signup">ArtChallenge</a>

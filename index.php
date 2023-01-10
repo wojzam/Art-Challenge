@@ -10,9 +10,16 @@ Router::get('userCollection', 'DefaultController');
 Router::get('browseArt', 'DefaultController');
 Router::get('joinChallenge', 'DefaultController');
 Router::get('challenge', 'DefaultController');
+
 Router::get('logout', 'SecurityController');
 Router::post('login', 'SecurityController');
 Router::post('signup', 'SecurityController');
+
 Router::post('uploadEntry', 'EntryController');
+
+Router::get('settings', 'UserController');
+Router::post('changeUsername', 'UserController');
+Router::post('changePassword', 'UserController');
+Router::post('deleteUser', 'UserController');
 
 Router::run($path);
