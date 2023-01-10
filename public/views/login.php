@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
     <title>LOGIN</title>
