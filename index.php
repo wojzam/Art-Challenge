@@ -10,6 +10,7 @@ Router::get('userCollection', 'DefaultController');
 Router::get('browseArt', 'DefaultController');
 Router::get('joinChallenge', 'DefaultController');
 Router::get('challenge', 'DefaultController');
+Router::get('logout', 'SecurityController');
 Router::post('login', 'SecurityController');
 Router::post('signup', 'SecurityController');
 Router::post('uploadEntry', 'EntryController');

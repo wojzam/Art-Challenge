@@ -54,11 +54,7 @@ header * {
     color: #C3FCF1;
 }
 
-.nav-btn {
-    display: flex;
-}
-
-.nav-btn a {
+#login-signup a {
     display: inline-block;
     width: 80px;
     border: 2px solid white;
@@ -83,15 +79,17 @@ header * {
     color: black;
 }
 
-.dropdown {
+#user-settings {
     padding: 2em;
-    margin: 0.7em 2.2em;
+    margin: 0.7em 1em;
 }
 
 .drop-btn {
+    min-width: 160px;
     border: none;
     outline: none;
     font-size: 1.4em;
+    text-align: right;
     background-color: inherit;
     cursor: pointer;
 }
@@ -120,6 +118,6 @@ header * {
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+#user-settings:hover .dropdown-content {
     display: block;
 }

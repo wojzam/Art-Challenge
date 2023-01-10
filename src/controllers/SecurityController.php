@@ -24,19 +24,24 @@ class SecurityController extends AppController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = $this->userRepository->getUser($email);
+       // $user = $this->userRepository->getUser($email);
 
-        if (!$user) {
-            return $this->render('login', ['messages' => ['User not found!']]);
-        }
-
-        if ($user->getEmail() !== $email) {
-            return $this->render('login', ['messages' => ['User with this email not exist!']]);
-        }
-
-        if ($user->getPassword() !== $password) {
-            return $this->render('login', ['messages' => ['Wrong password!']]);
-        }
+        session_start();
+        $_SESSION['logged_in'] = true;
+        setcookie('session_id', session_id(), time() + 86400);
+        setcookie('username', $email, time() + 86400);
+//
+//        if (!$user) {
+//            return $this->render('login', ['messages' => ['User not found!']]);
+//        }
+//
+//        if ($user->getEmail() !== $email) {
+//            return $this->render('login', ['messages' => ['User with this email not exist!']]);
+//        }
+//
+//        if ($user->getPassword() !== $password) {
+//            return $this->render('login', ['messages' => ['Wrong password!']]);
+//        }
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/userCollection");
@@ -62,5 +67,16 @@ class SecurityController extends AppController
         $this->userRepository->addUser($user);
 
         return $this->render('signup', ['messages' => ['You\'ve been succesfully registrated!']]);
+    }
+
+    public function logout()
+    {
+        //session_destroy();
+        unset($_SESSION['logged_in']);
+        setcookie('session_id', '',  time() - 3600);
+        setcookie('username', '',  time() - 3600);
+
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}");
     }
 }
