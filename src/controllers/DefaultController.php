@@ -10,11 +10,6 @@ class DefaultController extends AppController
         $this->render('home');
     }
 
-    public function userCollection()
-    {
-        $this->render('user-collection');
-    }
-
     public function browseArt()
     {
         $this->render('browse-art');
@@ -28,5 +23,10 @@ class DefaultController extends AppController
     public function joinChallenge()
     {
         $this->render('join-challenge');
+    }
+
+    public function settings()
+    {
+        $this->render('settings');
     }
 }

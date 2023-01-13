@@ -14,18 +14,13 @@ class UserController extends AppController
         $this->userRepository = new UserRepository();
     }
 
-    public function settings()
-    {
-        $this->render('settings');
-    }
-
     public function changeUsername()
     {
         if (!$this->isPost()) {
             return $this->render('settings');
         }
 
-        return $this->render('settings', ['messages' => ['Zmiana nazwy']]);
+        return $this->render('settings', ['info' => ['Zmiana nazwy']]);
     }
 
     public function changePassword()
@@ -34,7 +29,7 @@ class UserController extends AppController
             return $this->render('settings');
         }
 
-        return $this->render('settings', ['messages' => ['Zmiana hasła']]);
+        return $this->render('settings', ['info' => ['Zmiana hasła']]);
     }
 
     public function deleteUser()
@@ -43,7 +38,7 @@ class UserController extends AppController
             return $this->render('settings');
         }
 
-        return $this->render('settings', ['messages' => ['Usuwanie']]);
+        return $this->render('settings', ['info' => ['Usuwanie']]);
     }
 
 }

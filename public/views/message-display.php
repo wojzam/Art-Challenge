@@ -1,8 +1,17 @@
-<div class="messages">
+<div class="info">
     <?php
-    if (isset($messages)) {
-        foreach ($messages as $message) {
-            echo $message;
+    if (isset($info)) {
+        foreach ($info as $i) {
+            echo $i;
+        }
+    }
+    ?>
+</div>
+<div class="error">
+    <?php
+    if (isset($error)) {
+        foreach ($error as $e) {
+            echo $e;
         }
     }
     ?>

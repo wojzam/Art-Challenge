@@ -157,8 +157,15 @@ h2 {
     color: inherit;
 }
 
-.messages {
+.info {
+    color: black;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.error {
     color: red;
     font-weight: bold;
     font-size: 1.2em;
+    text-align: center;
 }

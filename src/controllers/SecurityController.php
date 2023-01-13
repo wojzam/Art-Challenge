@@ -32,15 +32,15 @@ class SecurityController extends AppController
         setcookie('username', $email, time() + 86400);
 //
 //        if (!$user) {
-//            return $this->render('login', ['messages' => ['User not found!']]);
+//            return $this->render('login', ['error' => ['User not found!']]);
 //        }
 //
 //        if ($user->getEmail() !== $email) {
-//            return $this->render('login', ['messages' => ['User with this email not exist!']]);
+//            return $this->render('login', ['error' => ['User with this email not exist!']]);
 //        }
 //
 //        if ($user->getPassword() !== $password) {
-//            return $this->render('login', ['messages' => ['Wrong password!']]);
+//            return $this->render('login', ['error' => ['Wrong password!']]);
 //        }
 
         $url = "http://$_SERVER[HTTP_HOST]";
@@ -59,14 +59,14 @@ class SecurityController extends AppController
         $passwordRepeated = $_POST['passwordRepeated'];
 
         if ($password !== $passwordRepeated) {
-            return $this->render('signup', ['messages' => ['Passwords do not match']]);
+            return $this->render('signup', ['error' => ['Passwords do not match']]);
         }
 
-        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $username);
+        $user = new User($username, $email, password_hash($password, PASSWORD_BCRYPT), 1);
 
         $this->userRepository->addUser($user);
 
-        return $this->render('signup', ['messages' => ['You\'ve been succesfully registrated!']]);
+        return $this->render('signup', ['info' => ['You\'ve been succesfully registrated!']]);
     }
 
     public function logout()

@@ -9,8 +9,7 @@ class UserRepository extends Repository
     public function getUser(string $email): ?User
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM users u LEFT JOIN users_details ud 
-            ON u.id_user_details = ud.id WHERE email = :email
+              SELECT * FROM public.user WHERE email = :email
         ');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -22,48 +21,47 @@ class UserRepository extends Repository
         }
 
         return new User(
+            $user['username'],
             $user['email'],
             $user['password'],
-            $user['username']
+            $user['role']
         );
     }
 
     public function addUser(User $user)
     {
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO users_details (name, surname, phone)
-            VALUES (?, ?, ?)
+            INSERT INTO public.user (username, email, password, id_role)
+            VALUES (?, ?, ?, ?)
         ');
 
         $stmt->execute([
-            $user->getName(),
-            $user->getSurname(),
-            $user->getPhone()
-        ]);
-
-        $stmt = $this->database->connect()->prepare('
-            INSERT INTO users (email, password, id_user_details)
-            VALUES (?, ?, ?)
-        ');
-
-        $stmt->execute([
+            $user->getUsername(),
             $user->getEmail(),
             $user->getPassword(),
-            $this->getUserDetailsId($user)
+            $user->getRole()
         ]);
     }
 
-    public function getUserDetailsId(User $user): int
+    public function getUsers(): array
     {
-        $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.users_details WHERE name = :name AND surname = :surname AND phone = :phone
-        ');
-        $stmt->bindParam(':name', $user->getName(), PDO::PARAM_STR);
-        $stmt->bindParam(':surname', $user->getSurname(), PDO::PARAM_STR);
-        $stmt->bindParam(':phone', $user->getPhone(), PDO::PARAM_STR);
-        $stmt->execute();
+        $result = [];
 
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data['id'];
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM public.user;
+        ');
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($users as $user) {
+            $result[] = new User(
+                $user['username'],
+                $user['email'],
+                $user['password'],
+                $user['id_role']
+            );
+        }
+
+        return $result;
     }
 }

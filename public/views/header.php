@@ -3,13 +3,14 @@
         <div class="title-container">
             <a class="title" href="/"> Art Challenge </a>
         </div>
-        <a href="challenge"> Challenges</a>
-        <a href="joinChallenge"> Join</a>
+        <a href="challenge"> Challenges </a>
+        <a href="joinChallenge"> Join </a>
         <a href="browseArt"> Browse art </a>
-        <a href="userCollection"> My collection</a>
+        <a href="userCollection"> My collection </a>
+        <a href="adminDashboard"> Admin Dashboard </a>
     </div>
     <div id="login-signup">
-        <a class="login-btn" href="login"> Login</a>
+        <a class="login-btn" href="login"> Login </a>
         <a class="signup-btn" href="signup"> Sign up </a>
     </div>
     <div id="user-settings">
