@@ -1,18 +1,20 @@
-<div class="info">
-    <?php
-    if (isset($info)) {
-        foreach ($info as $i) {
-            echo $i;
+<div class="messages">
+    <div class="info-message">
+        <?php
+        if (isset($info)) {
+            foreach ($info as $i) {
+                echo $i;
+            }
         }
-    }
-    ?>
-</div>
-<div class="error">
-    <?php
-    if (isset($error)) {
-        foreach ($error as $e) {
-            echo $e;
+        ?>
+    </div>
+    <div class="error-message">
+        <?php
+        if (isset($error)) {
+            foreach ($error as $e) {
+                echo $e;
+            }
         }
-    }
-    ?>
+        ?>
+    </div>
 </div>

@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/header.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <?php require_once 'head.php'; ?>
     <title>SETTINGS</title>
 </head>
 
 <body>
 <div class="container">
-    <?php include 'header.php'; ?>
+    <?php require_once 'header.php'; ?>
     <main class="form-page">
         <div>
             <h2>Account settings</h2>

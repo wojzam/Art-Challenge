@@ -24,17 +24,13 @@ header * {
     align-items: center;
 }
 
-.title-container .title {
+.page-title-container .page-title {
     margin-left: 0.8em;
     margin-right: 1.5em;
     font-size: 2em;
     font-weight: bold;
     padding: 0;
     white-space: nowrap;
-}
-
-.title-container .title:hover {
-    color: white;
 }
 
 .navbar a {
@@ -85,13 +81,18 @@ header * {
 }
 
 .drop-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 0.5em;
     min-width: 160px;
-    border: none;
-    outline: none;
     font-size: 1.4em;
-    text-align: right;
     background-color: inherit;
     cursor: pointer;
+}
+
+.drop-btn:hover * {
+    color: #C3FCF1;
 }
 
 .dropdown-content {

@@ -24,27 +24,31 @@ class SecurityController extends AppController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // $user = $this->userRepository->getUser($email);
+        foreach ($_POST as $value) {
+            if ($this->isInvalid($value)) {
+                return $this->render('login', ['error' => ['Received invalid request!']]);
+            }
+        }
 
-        session_start();
-        $_SESSION['logged_in'] = true;
-        setcookie('session_id', session_id(), time() + 86400);
-        setcookie('username', $email, time() + 86400);
-//
-//        if (!$user) {
-//            return $this->render('login', ['error' => ['User not found!']]);
-//        }
-//
-//        if ($user->getEmail() !== $email) {
-//            return $this->render('login', ['error' => ['User with this email not exist!']]);
-//        }
-//
-//        if ($user->getPassword() !== $password) {
-//            return $this->render('login', ['error' => ['Wrong password!']]);
-//        }
+        $user = $this->userRepository->getUser($email);
+
+        if (!$user) {
+            return $this->render('login', ['error' => ['User with this email does not exist!']]);
+        }
+
+        if (!password_verify($password, $user->getPassword())) {
+            return $this->render('login', ['error' => ['Wrong password!']]);
+        }
+
+        $this->sessionRepository->createUserSession($user->getId());
 
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/userCollection");
+        header("Location: {$url}/joinChallenge");
+    }
+
+    private function isInvalid(string $field): bool
+    {
+        return $field == null || $field == "" || strlen($field) > 64;
     }
 
     public function signup()
@@ -58,23 +62,34 @@ class SecurityController extends AppController
         $password = $_POST['password'];
         $passwordRepeated = $_POST['passwordRepeated'];
 
-        if ($password !== $passwordRepeated) {
-            return $this->render('signup', ['error' => ['Passwords do not match']]);
+        foreach ($_POST as $value) {
+            if ($this->isInvalid($value)) {
+                return $this->render('signup', ['error' => ['Received invalid request!']]);
+            }
         }
 
-        $user = new User($username, $email, password_hash($password, PASSWORD_BCRYPT), 1);
+        if ($this->userRepository->userExists('username', $username)) {
+            return $this->render('signup', ['error' => ['User with this username already exists!']]);
+        }
+
+        if ($this->userRepository->userExists('email', $email)) {
+            return $this->render('signup', ['error' => ['User with this email already exists!']]);
+        }
+
+        if ($password !== $passwordRepeated) {
+            return $this->render('signup', ['error' => ['Passwords do not match!']]);
+        }
+
+        $user = new User(0, $username, $email, password_hash($password, PASSWORD_BCRYPT));
 
         $this->userRepository->addUser($user);
 
-        return $this->render('signup', ['info' => ['You\'ve been succesfully registrated!']]);
+        return $this->render('signup', ['info' => ['You\'ve been succesfully registrated']]);
     }
 
     public function logout()
     {
-        //session_destroy();
-        unset($_SESSION['logged_in']);
-        setcookie('session_id', '', time() - 3600);
-        setcookie('username', '', time() - 3600);
+        $this->sessionRepository->endUserSession();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}");

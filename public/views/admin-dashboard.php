@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/header.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/image-collection.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <?php require_once 'head.php'; ?>
+    <link rel="stylesheet" type="text/css" href="/public/css/admin-dashboard.css">
     <title>ADMIN DASHBOARD</title>
 </head>
 
 <body>
 <div class="container">
-    <?php include 'header.php'; ?>
+    <?php require_once 'header.php'; ?>
     <main>
         <div class="content-container">
             <h1>Admin Dashboard</h1>
@@ -20,7 +17,7 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th></th>
+                    <th>Delete</th>
                 </tr>
                 <?php foreach ($users as $user): ?>
                     <tr>
@@ -28,7 +25,7 @@
                         <td><?= $user->getEmail(); ?></td>
                         <td><?= $user->getRole(); ?></td>
                         <td>
-                            <button>Delete</button>
+                            <i class="fa-solid fa-xmark"></i>
                         </td>
                     </tr>
                 <?php endforeach; ?>

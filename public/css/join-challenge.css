@@ -1,40 +1,28 @@
-.content-container {
-    margin-top: 3em;
-    width: 80%;
-}
-
-.content-container > h1 {
-    margin-bottom: 10vh;
-}
-
-.content-container > div {
+.tab-menu {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 35px 0;
+    column-gap: 2em;
+    margin-bottom: 2em;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 
-.big-btn {
-    background: #005247;
-    box-shadow: 0 3px 6px #00000029;
-    border-radius: 30px;
-
-    width: 400px;
-    border: none;
-    color: white;
-    line-height: 2.3em;
-
-    font-weight: bold;
-    font-size: 2.5em;
-}
-
-.big-btn:hover {
-    background: #00bda2;
-}
-
-.description {
+.tab-menu *:hover {
     color: #005247;
-    font-size: 2.5em;
+}
+
+.selected {
+    color: #00bda2;
+}
+
+.challenge-topic {
+    margin-top: 1em;
+    font-size: 4em;
+    margin-bottom: 0;
+}
+
+.counter {
+    color: #005247;
+    font-size: 1.5em;
     font-weight: lighter;
-    margin-left: 1.5em;
+    margin-bottom: 2em;
 }

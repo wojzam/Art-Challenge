@@ -10,15 +10,6 @@ class DefaultController extends AppController
         $this->render('home');
     }
 
-    public function browseArt()
-    {
-        $this->render('browse-art');
-    }
-
-    public function challenge()
-    {
-        $this->render('challenge');
-    }
 
     public function joinChallenge()
     {

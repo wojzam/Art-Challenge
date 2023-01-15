@@ -1,11 +1,15 @@
 <?php
 
+require_once __DIR__ . '/../repository/SessionRepository.php';
+
 class AppController
 {
+    protected $sessionRepository;
     private $request;
 
     public function __construct()
     {
+        $this->sessionRepository = new SessionRepository();
         $this->request = $_SERVER['REQUEST_METHOD'];
     }
 
@@ -32,5 +36,21 @@ class AppController
             $output = ob_get_clean();
         }
         print $output;
+    }
+
+    protected function isAuthorized(): int
+    {
+        if (isset($_COOKIE["session_token"])) {
+            $id_user = $this->sessionRepository->getUserId();
+            if ($id_user) {
+                return $id_user;
+            } else {
+                http_response_code(401);
+                exit;
+            }
+        } else {
+            http_response_code(401);
+            exit;
+        }
     }
 }

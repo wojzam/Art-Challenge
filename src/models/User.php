@@ -2,17 +2,29 @@
 
 class User
 {
+    private $id;
     private $username;
     private $email;
     private $password;
     private $role;
 
-    public function __construct(string $username, string $email, string $password, int $role)
+    public function __construct(int $id, string $username, string $email, string $password, string $role = "user")
     {
+        $this->id = $id;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getUsername(): string
@@ -45,12 +57,12 @@ class User
         $this->password = $password;
     }
 
-    public function getRole(): int
+    public function getRole(): string
     {
         return $this->role;
     }
 
-    public function setRole(int $role): void
+    public function setRole(string $role): void
     {
         $this->role = $role;
     }

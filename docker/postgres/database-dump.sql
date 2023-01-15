@@ -40,10 +40,11 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.challenge
 (
-    id         integer                NOT NULL,
-    id_type    integer                NOT NULL,
-    topic      character varying(255) NOT NULL,
-    start_date date
+    id_challenge integer                NOT NULL,
+    id_type      integer                NOT NULL,
+    topic        character varying(255) NOT NULL,
+    start_date   date,
+    id_status    integer DEFAULT 1      NOT NULL
 );
 
 
@@ -70,7 +71,44 @@ ALTER TABLE public.challenge_id_seq
 -- Name: challenge_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
 --
 
-ALTER SEQUENCE public.challenge_id_seq OWNED BY public.challenge.id;
+ALTER SEQUENCE public.challenge_id_seq OWNED BY public.challenge.id_challenge;
+
+
+--
+-- Name: challenge_status; Type: TABLE; Schema: public; Owner: dbuser
+--
+
+CREATE TABLE public.challenge_status
+(
+    id_status integer               NOT NULL,
+    name      character varying(64) NOT NULL
+);
+
+
+ALTER TABLE public.challenge_status
+    OWNER TO dbuser;
+
+--
+-- Name: challenge_status_id_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
+--
+
+CREATE SEQUENCE public.challenge_status_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.challenge_status_id_seq
+    OWNER TO dbuser;
+
+--
+-- Name: challenge_status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
+--
+
+ALTER SEQUENCE public.challenge_status_id_seq OWNED BY public.challenge_status.id_status;
 
 
 --
@@ -79,7 +117,7 @@ ALTER SEQUENCE public.challenge_id_seq OWNED BY public.challenge.id;
 
 CREATE TABLE public.challenge_type
 (
-    id       integer               NOT NULL,
+    id_type  integer               NOT NULL,
     name     character varying(64) NOT NULL,
     duration integer               NOT NULL
 );
@@ -108,7 +146,7 @@ ALTER TABLE public.challenge_type_id_seq
 -- Name: challenge_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
 --
 
-ALTER SEQUENCE public.challenge_type_id_seq OWNED BY public.challenge_type.id;
+ALTER SEQUENCE public.challenge_type_id_seq OWNED BY public.challenge_type.id_type;
 
 
 --
@@ -117,7 +155,7 @@ ALTER SEQUENCE public.challenge_type_id_seq OWNED BY public.challenge_type.id;
 
 CREATE TABLE public.entry
 (
-    id           integer                NOT NULL,
+    id_entry     integer                NOT NULL,
     id_owner     integer                NOT NULL,
     id_challenge integer                NOT NULL,
     image        character varying(255) NOT NULL
@@ -147,7 +185,7 @@ ALTER TABLE public.entry_id_seq
 -- Name: entry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
 --
 
-ALTER SEQUENCE public.entry_id_seq OWNED BY public.entry.id;
+ALTER SEQUENCE public.entry_id_seq OWNED BY public.entry.id_entry;
 
 
 --
@@ -170,8 +208,8 @@ ALTER TABLE public.entry_votes
 
 CREATE TABLE public.role
 (
-    id   integer               NOT NULL,
-    name character varying(64) NOT NULL
+    id_role integer               NOT NULL,
+    name    character varying(64) NOT NULL
 );
 
 
@@ -198,7 +236,7 @@ ALTER TABLE public.role_id_seq
 -- Name: role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
 --
 
-ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id;
+ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id_role;
 
 
 --
@@ -207,10 +245,10 @@ ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id;
 
 CREATE TABLE public.session
 (
-    id      integer               NOT NULL,
-    id_user integer               NOT NULL,
-    token   character varying(64) NOT NULL,
-    expire  date
+    id_session integer                     NOT NULL,
+    id_user    integer                     NOT NULL,
+    token      character varying(255)      NOT NULL,
+    expire     timestamp without time zone NOT NULL
 );
 
 
@@ -218,10 +256,10 @@ ALTER TABLE public.session
     OWNER TO dbuser;
 
 --
--- Name: session_id_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
+-- Name: session_id_session_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
 --
 
-CREATE SEQUENCE public.session_id_seq
+CREATE SEQUENCE public.session_id_session_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -230,37 +268,14 @@ CREATE SEQUENCE public.session_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.session_id_seq
+ALTER TABLE public.session_id_session_seq
     OWNER TO dbuser;
 
 --
--- Name: session_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
+-- Name: session_id_session_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
 --
 
-ALTER SEQUENCE public.session_id_seq OWNED BY public.session.id;
-
-
---
--- Name: session_id_user_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
---
-
-CREATE SEQUENCE public.session_id_user_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.session_id_user_seq
-    OWNER TO dbuser;
-
---
--- Name: session_id_user_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
---
-
-ALTER SEQUENCE public.session_id_user_seq OWNED BY public.session.id_user;
+ALTER SEQUENCE public.session_id_session_seq OWNED BY public.session.id_session;
 
 
 --
@@ -269,7 +284,7 @@ ALTER SEQUENCE public.session_id_user_seq OWNED BY public.session.id_user;
 
 CREATE TABLE public."user"
 (
-    id       integer               NOT NULL,
+    id_user  integer               NOT NULL,
     username character varying(64) NOT NULL,
     email    character varying(64) NOT NULL,
     password character varying(64) NOT NULL,
@@ -323,7 +338,7 @@ ALTER TABLE public.user_id_seq
 -- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
 --
 
-ALTER SEQUENCE public.user_id_seq OWNED BY public."user".id;
+ALTER SEQUENCE public.user_id_seq OWNED BY public."user".id_user;
 
 
 --
@@ -342,66 +357,85 @@ ALTER TABLE public.vote
     OWNER TO dbuser;
 
 --
--- Name: challenge id; Type: DEFAULT; Schema: public; Owner: dbuser
+-- Name: challenge id_challenge; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.challenge
-    ALTER COLUMN id SET DEFAULT nextval('public.challenge_id_seq'::regclass);
+    ALTER COLUMN id_challenge SET DEFAULT nextval('public.challenge_id_seq'::regclass);
 
 
 --
--- Name: challenge_type id; Type: DEFAULT; Schema: public; Owner: dbuser
+-- Name: challenge_status id_status; Type: DEFAULT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.challenge_status
+    ALTER COLUMN id_status SET DEFAULT nextval('public.challenge_status_id_seq'::regclass);
+
+
+--
+-- Name: challenge_type id_type; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.challenge_type
-    ALTER COLUMN id SET DEFAULT nextval('public.challenge_type_id_seq'::regclass);
+    ALTER COLUMN id_type SET DEFAULT nextval('public.challenge_type_id_seq'::regclass);
 
 
 --
--- Name: entry id; Type: DEFAULT; Schema: public; Owner: dbuser
+-- Name: entry id_entry; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.entry
-    ALTER COLUMN id SET DEFAULT nextval('public.entry_id_seq'::regclass);
+    ALTER COLUMN id_entry SET DEFAULT nextval('public.entry_id_seq'::regclass);
 
 
 --
--- Name: role id; Type: DEFAULT; Schema: public; Owner: dbuser
+-- Name: role id_role; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.role
-    ALTER COLUMN id SET DEFAULT nextval('public.role_id_seq'::regclass);
+    ALTER COLUMN id_role SET DEFAULT nextval('public.role_id_seq'::regclass);
 
 
 --
--- Name: session id; Type: DEFAULT; Schema: public; Owner: dbuser
+-- Name: session id_session; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.session
-    ALTER COLUMN id SET DEFAULT nextval('public.session_id_seq'::regclass);
+    ALTER COLUMN id_session SET DEFAULT nextval('public.session_id_session_seq'::regclass);
 
 
 --
--- Name: user id; Type: DEFAULT; Schema: public; Owner: dbuser
+-- Name: user id_user; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public."user"
-    ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
+    ALTER COLUMN id_user SET DEFAULT nextval('public.user_id_seq'::regclass);
 
 
 --
 -- Data for Name: challenge; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-COPY public.challenge (id, id_type, topic, start_date) FROM stdin;
-1	1	Cat	\N
-2	2	Cityscape at sunset	\N
-3	2	Beach scene with palm trees	\N
-4	2	River running through a city	\N
-5	1	Face	\N
-6	1	Bird on a branch	\N
-7	1	Sunflower	\N
-8	3	Landscape with a mountain and a lake	\N
+COPY public.challenge (id_challenge, id_type, topic, start_date, id_status) FROM stdin;
+3	2	Beach scene with palm trees	\N	1
+4	2	River running through a city	\N	1
+5	1	Face	\N	1
+6	1	Bird on a branch	\N	1
+7	1	Sunflower	\N	1
+8	2	Landscape with a mountain and a lake	\N	1
+1	1	Cat	\N	2
+2	2	Cityscape at sunset	\N	2
+\.
+
+
+--
+-- Data for Name: challenge_status; Type: TABLE DATA; Schema: public; Owner: dbuser
+--
+
+COPY public.challenge_status (id_status, name) FROM stdin;
+1	ready
+2	ongoing
+3	completed
 \.
 
 
@@ -409,10 +443,9 @@ COPY public.challenge (id, id_type, topic, start_date) FROM stdin;
 -- Data for Name: challenge_type; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-COPY public.challenge_type (id, name, duration) FROM stdin;
+COPY public.challenge_type (id_type, name, duration) FROM stdin;
 1	daily	1
 2	weekly	7
-3	biweekly	14
 \.
 
 
@@ -420,8 +453,14 @@ COPY public.challenge_type (id, name, duration) FROM stdin;
 -- Data for Name: entry; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-COPY public.entry (id, id_owner, id_challenge, image) FROM stdin;
-2	1	1	lab2a.png
+COPY public.entry (id_entry, id_owner, id_challenge, image) FROM stdin;
+14	1	2	examples/cityscape_at_sunset.png
+15	1	5	examples/face.png
+20	1	1	uploads/63c2d95f237fe.png
+21	1	1	uploads/63c30c20d4a25.png
+22	1	1	uploads/63c3ca2bf1da9.png
+12	20	1	examples/cat_1.png
+13	18	1	examples/cat_2.png
 \.
 
 
@@ -437,7 +476,7 @@ COPY public.entry_votes (id_entry, votes_count) FROM stdin;
 -- Data for Name: role; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-COPY public.role (id, name) FROM stdin;
+COPY public.role (id_role, name) FROM stdin;
 1	user
 2	admin
 \.
@@ -447,7 +486,7 @@ COPY public.role (id, name) FROM stdin;
 -- Data for Name: session; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-COPY public.session (id, id_user, token, expire) FROM stdin;
+COPY public.session (id_session, id_user, token, expire) FROM stdin;
 \.
 
 
@@ -455,8 +494,11 @@ COPY public.session (id, id_user, token, expire) FROM stdin;
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-COPY public."user" (id, username, email, password, id_role) FROM stdin;
-1	a	a	$2y$10$wtNBrgIQGTWZEQWf77gIBe6VsUUxURO9sdGWNHOcuUpsk/veaj7Pa	1
+COPY public."user" (id_user, username, email, password, id_role) FROM stdin;
+18	username	email@email.com	$2y$10$JS4FIxcL/d8fwGLDvBq04.YMthQ9lqByKQEPtr4VAW76u5DQGXreW	1
+1	a	a	$2y$10$wtNBrgIQGTWZEQWf77gIBe6VsUUxURO9sdGWNHOcuUpsk/veaj7Pa	2
+19	Jan	mail@mail.com	$2y$10$rLegiYHs8AIgYoLoa5icB..XKw2DoswCCYF06XR3PWNydqHG6I7qK	1
+20	Admin	admin	$2y$10$IUTQTBH8igrmQUyc0j8.PeH0fptJ80YBTN89J.5dm7/PESy7Mne76	2
 \.
 
 
@@ -476,6 +518,13 @@ SELECT pg_catalog.setval('public.challenge_id_seq', 8, true);
 
 
 --
+-- Name: challenge_status_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
+--
+
+SELECT pg_catalog.setval('public.challenge_status_id_seq', 3, true);
+
+
+--
 -- Name: challenge_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
@@ -486,7 +535,7 @@ SELECT pg_catalog.setval('public.challenge_type_id_seq', 3, true);
 -- Name: entry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.entry_id_seq', 2, true);
+SELECT pg_catalog.setval('public.entry_id_seq', 22, true);
 
 
 --
@@ -497,17 +546,10 @@ SELECT pg_catalog.setval('public.role_id_seq', 2, true);
 
 
 --
--- Name: session_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
+-- Name: session_id_session_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.session_id_seq', 1, false);
-
-
---
--- Name: session_id_user_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
---
-
-SELECT pg_catalog.setval('public.session_id_user_seq', 1, false);
+SELECT pg_catalog.setval('public.session_id_session_seq', 4, true);
 
 
 --
@@ -521,7 +563,7 @@ SELECT pg_catalog.setval('public.user_id_role_seq', 2, true);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.user_id_seq', 17, true);
+SELECT pg_catalog.setval('public.user_id_seq', 21, true);
 
 
 --
@@ -529,7 +571,15 @@ SELECT pg_catalog.setval('public.user_id_seq', 17, true);
 --
 
 ALTER TABLE ONLY public.challenge
-    ADD CONSTRAINT challenge_pk PRIMARY KEY (id);
+    ADD CONSTRAINT challenge_pk PRIMARY KEY (id_challenge);
+
+
+--
+-- Name: challenge_status challenge_status_pk; Type: CONSTRAINT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.challenge_status
+    ADD CONSTRAINT challenge_status_pk PRIMARY KEY (id_status);
 
 
 --
@@ -537,7 +587,7 @@ ALTER TABLE ONLY public.challenge
 --
 
 ALTER TABLE ONLY public.challenge_type
-    ADD CONSTRAINT challenge_type_pk PRIMARY KEY (id);
+    ADD CONSTRAINT challenge_type_pk PRIMARY KEY (id_type);
 
 
 --
@@ -545,7 +595,7 @@ ALTER TABLE ONLY public.challenge_type
 --
 
 ALTER TABLE ONLY public.entry
-    ADD CONSTRAINT entry_pk PRIMARY KEY (id);
+    ADD CONSTRAINT entry_pk PRIMARY KEY (id_entry);
 
 
 --
@@ -561,7 +611,7 @@ ALTER TABLE ONLY public.entry_votes
 --
 
 ALTER TABLE ONLY public.role
-    ADD CONSTRAINT role_pk PRIMARY KEY (id);
+    ADD CONSTRAINT role_pk PRIMARY KEY (id_role);
 
 
 --
@@ -569,7 +619,7 @@ ALTER TABLE ONLY public.role
 --
 
 ALTER TABLE ONLY public.session
-    ADD CONSTRAINT session_pk PRIMARY KEY (id);
+    ADD CONSTRAINT session_pk PRIMARY KEY (id_session);
 
 
 --
@@ -577,7 +627,7 @@ ALTER TABLE ONLY public.session
 --
 
 ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_pk PRIMARY KEY (id);
+    ADD CONSTRAINT user_pk PRIMARY KEY (id_user);
 
 
 --
@@ -589,75 +639,83 @@ ALTER TABLE ONLY public.vote
 
 
 --
--- Name: challenge challenge_challenge_type_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: challenge challenge_challenge_status_id_status_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.challenge
-    ADD CONSTRAINT challenge_challenge_type_id_fk FOREIGN KEY (id_type) REFERENCES public.challenge_type (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT challenge_challenge_status_id_status_fk FOREIGN KEY (id_status) REFERENCES public.challenge_status (id_status) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: entry entry_challenge_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: challenge challenge_challenge_type_id_type_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.challenge
+    ADD CONSTRAINT challenge_challenge_type_id_type_fk FOREIGN KEY (id_type) REFERENCES public.challenge_type (id_type) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: entry entry_challenge_id_challenge_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.entry
-    ADD CONSTRAINT entry_challenge_id_fk FOREIGN KEY (id_challenge) REFERENCES public.challenge (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT entry_challenge_id_challenge_fk FOREIGN KEY (id_challenge) REFERENCES public.challenge (id_challenge) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: entry entry_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: entry entry_user_id_user_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.entry
-    ADD CONSTRAINT entry_user_id_fk FOREIGN KEY (id_owner) REFERENCES public."user" (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT entry_user_id_user_fk FOREIGN KEY (id_owner) REFERENCES public."user" (id_user) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: entry_votes entry_votes_entry_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: entry_votes entry_votes_entry_id_entry_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.entry_votes
-    ADD CONSTRAINT entry_votes_entry_id_fk FOREIGN KEY (id_entry) REFERENCES public.entry (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT entry_votes_entry_id_entry_fk FOREIGN KEY (id_entry) REFERENCES public.entry (id_entry) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: session session_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: session session_user_id_user_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.session
-    ADD CONSTRAINT session_user_id_fk FOREIGN KEY (id_user) REFERENCES public."user" (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT session_user_id_user_fk FOREIGN KEY (id_user) REFERENCES public."user" (id_user);
 
 
 --
--- Name: user user_role_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: user user_role_id_role_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_role_id_fk FOREIGN KEY (id_role) REFERENCES public.role (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT user_role_id_role_fk FOREIGN KEY (id_role) REFERENCES public.role (id_role) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: vote vote_challenge_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
---
-
-ALTER TABLE ONLY public.vote
-    ADD CONSTRAINT vote_challenge_id_fk FOREIGN KEY (id_challenge) REFERENCES public.challenge (id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: vote vote_entry_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: vote vote_challenge_id_challenge_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.vote
-    ADD CONSTRAINT vote_entry_id_fk FOREIGN KEY (id_entry) REFERENCES public.entry (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT vote_challenge_id_challenge_fk FOREIGN KEY (id_challenge) REFERENCES public.challenge (id_challenge) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: vote vote_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+-- Name: vote vote_entry_id_entry_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.vote
-    ADD CONSTRAINT vote_user_id_fk FOREIGN KEY (id_user) REFERENCES public."user" (id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT vote_entry_id_entry_fk FOREIGN KEY (id_entry) REFERENCES public.entry (id_entry) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: vote vote_user_id_user_fk; Type: FK CONSTRAINT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.vote
+    ADD CONSTRAINT vote_user_id_user_fk FOREIGN KEY (id_user) REFERENCES public."user" (id_user) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
