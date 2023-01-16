@@ -418,13 +418,13 @@ ALTER TABLE ONLY public."user"
 
 COPY public.challenge (id_challenge, id_type, topic, start_date, id_status) FROM stdin;
 3	2	Beach scene with palm trees	\N	1
-4	2	River running through a city	\N	1
-5	1	Face	\N	1
 6	1	Bird on a branch	\N	1
-7	1	Sunflower	\N	1
-8	2	Landscape with a mountain and a lake	\N	1
 1	1	Cat	\N	2
 2	2	Cityscape at sunset	\N	2
+5	1	Face	2023-01-01	3
+8	2	Landscape with a mountain and a lake	2023-01-15	3
+4	2	River running through a city	2023-01-08	3
+7	1	Apples	2023-01-02	3
 \.
 
 
@@ -456,11 +456,7 @@ COPY public.challenge_type (id_type, name, duration) FROM stdin;
 COPY public.entry (id_entry, id_owner, id_challenge, image) FROM stdin;
 14	1	2	examples/cityscape_at_sunset.png
 15	1	5	examples/face.png
-20	1	1	uploads/63c2d95f237fe.png
-21	1	1	uploads/63c30c20d4a25.png
-22	1	1	uploads/63c3ca2bf1da9.png
-12	20	1	examples/cat_1.png
-13	18	1	examples/cat_2.png
+27	1	1	examples/cat_1.png
 \.
 
 
@@ -495,10 +491,10 @@ COPY public.session (id_session, id_user, token, expire) FROM stdin;
 --
 
 COPY public."user" (id_user, username, email, password, id_role) FROM stdin;
-18	username	email@email.com	$2y$10$JS4FIxcL/d8fwGLDvBq04.YMthQ9lqByKQEPtr4VAW76u5DQGXreW	1
 1	a	a	$2y$10$wtNBrgIQGTWZEQWf77gIBe6VsUUxURO9sdGWNHOcuUpsk/veaj7Pa	2
-19	Jan	mail@mail.com	$2y$10$rLegiYHs8AIgYoLoa5icB..XKw2DoswCCYF06XR3PWNydqHG6I7qK	1
-20	Admin	admin	$2y$10$IUTQTBH8igrmQUyc0j8.PeH0fptJ80YBTN89J.5dm7/PESy7Mne76	2
+23	Jan	jan@email.com	$2y$10$KF73OqML9jduGTu6QZgG2ujvU2YuR1qC.8z3zlJ.kEFjcIaPPtQZC	1
+24	Adam	adam@email.com	$2y$10$gjx0PINsfzrMm1BIqtRPvuHOZf8Imxcf2PiECD94BUB9tQxDNpJBu	1
+25	username	username@email.com	$2y$10$AOhkjiNsgbVWuzi0swMKV.t5xQJhEgMqYWYne8kyX9M5SWCgZdWKS	1
 \.
 
 
@@ -535,7 +531,7 @@ SELECT pg_catalog.setval('public.challenge_type_id_seq', 3, true);
 -- Name: entry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.entry_id_seq', 22, true);
+SELECT pg_catalog.setval('public.entry_id_seq', 27, true);
 
 
 --
@@ -549,7 +545,7 @@ SELECT pg_catalog.setval('public.role_id_seq', 2, true);
 -- Name: session_id_session_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.session_id_session_seq', 4, true);
+SELECT pg_catalog.setval('public.session_id_session_seq', 10, true);
 
 
 --
@@ -563,7 +559,7 @@ SELECT pg_catalog.setval('public.user_id_role_seq', 2, true);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.user_id_seq', 21, true);
+SELECT pg_catalog.setval('public.user_id_seq', 25, true);
 
 
 --

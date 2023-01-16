@@ -6,12 +6,17 @@ require_once __DIR__ . '/../models/User.php';
 class UserRepository extends Repository
 {
 
-    public function getUser(string $email): ?User
+    public function userExists(string $column, string $value): bool
     {
-        $stmt = $this->database->connect()->prepare('
-              SELECT * FROM "user" JOIN role r on r.id_role = "user".id_role WHERE email = :email;
-        ');
-        $stmt->bindParam(':email', $email);
+        $user = $this->getUser($column, $value);
+        return boolval($user);
+    }
+
+    public function getUser(string $column, string $value): ?User
+    {
+        $query = 'SELECT * FROM "user" JOIN role r on r.id_role = "user".id_role WHERE ' . $column . ' = :value LIMIT 1';
+        $stmt = $this->database->connect()->prepare($query);
+        $stmt->bindParam(':value', $value);
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,17 +49,36 @@ class UserRepository extends Repository
         ]);
     }
 
-    public function getRoleID(string $name): int
+    public function getRoleID(string $role_name): int
     {
-        $stmt = $this->database->connect()->prepare(
-            'SELECT id FROM role WHERE name = :name
+        $stmt = $this->database->connect()->prepare('
+            SELECT id_role FROM role WHERE name = :name
         ');
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':name', $role_name);
         $stmt->execute();
         return $stmt->fetchColumn();
     }
 
-    public function getUsers(): array
+    public function getRole(int $id_user): string
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT r.name FROM "user" JOIN role r on r.id_role = "user".id_role WHERE "user".id_user = :id_user
+        ');
+        $stmt->bindParam(':id_user', $id_user);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function deleteUser(int $id_user)
+    {
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM "user" WHERE id_user = :id;
+        ');
+        $stmt->bindParam(':id', $id_user);
+        $stmt->execute();
+    }
+
+    public function getAllUsers(): array
     {
         $result = [];
 
@@ -77,13 +101,4 @@ class UserRepository extends Repository
         return $result;
     }
 
-    public function userExists(string $column, string $value): bool
-    {
-        $query = "SELECT * FROM public.user WHERE {$column} = :value";
-        $stmt = $this->database->connect()->prepare($query);
-        $stmt->bindParam(':value', $value);
-        $stmt->execute();
-
-        return boolval($stmt->fetch(PDO::FETCH_ASSOC));
-    }
 }

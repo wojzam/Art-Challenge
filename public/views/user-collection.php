@@ -14,7 +14,6 @@
         <div class="content-container">
             <h1>My Collection</h1>
             <div class="big grid-gallery">
-
                 <?php foreach ($entries as $entry): ?>
                     <div class="image-overlay-container">
                         <img src="public/img/<?= $entry->getImage(); ?>" class="collection-image"
@@ -24,9 +23,9 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-
             </div>
         </div>
     </main>
+    <?php require_once 'popup-image.php'; ?>
 </div>
 </body>

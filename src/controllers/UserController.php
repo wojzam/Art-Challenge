@@ -14,8 +14,15 @@ class UserController extends AppController
         $this->userRepository = new UserRepository();
     }
 
+    public function settings()
+    {
+        $this->isAuthorized();
+        $this->render('settings');
+    }
+
     public function changeUsername()
     {
+        $this->isAuthorized();
         if (!$this->isPost()) {
             return $this->render('settings');
         }
@@ -25,6 +32,7 @@ class UserController extends AppController
 
     public function changePassword()
     {
+        $this->isAuthorized();
         if (!$this->isPost()) {
             return $this->render('settings');
         }
@@ -34,6 +42,7 @@ class UserController extends AppController
 
     public function deleteUser()
     {
+        $this->isAuthorized();
         if (!$this->isPost()) {
             return $this->render('settings');
         }

@@ -40,6 +40,7 @@
             </section>
         </div>
     </main>
+    <?php require_once 'popup-image.php'; ?>
 </div>
 </body>
 

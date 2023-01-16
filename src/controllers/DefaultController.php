@@ -10,14 +10,4 @@ class DefaultController extends AppController
         $this->render('home');
     }
 
-
-    public function joinChallenge()
-    {
-        $this->render('join-challenge');
-    }
-
-    public function settings()
-    {
-        $this->render('settings');
-    }
 }

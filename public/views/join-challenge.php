@@ -21,7 +21,7 @@
                 <h2 class="challenge-topic">"Cat"</h2>
                 <h3 class="counter">Time left: 10</h3>
                 <h3>YOUR ENTRY</h3>
-                <form action="uploadEntry" method="POST" ENCTYPE="multipart/form-data">
+                <form action="uploadEntry" method="POST" enctype="multipart/form-data">
                     <?php include 'message-display.php'; ?>
                     <input type="file" name="file"/><br/>
                     <button class="submit-btn" type="submit">UPLOAD</button>
