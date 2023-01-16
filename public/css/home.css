@@ -1,0 +1,74 @@
+.home-page {
+    background-size: 100%;
+    padding-top: 10vh;
+}
+
+.welcome-text {
+    font-size: 5.5vw;
+    font-weight: normal;
+    margin-bottom: 0.4em;
+}
+
+.big-btn {
+    background: transparent linear-gradient(180deg, #000000 0%, #262626 100%);
+    box-shadow: 0 3px 6px #00000029;
+    border-radius: 30px;
+
+    width: 25vw;
+    border: none;
+    color: white;
+    line-height: 2.3em;
+
+    font-family: "Cairo", serif;
+    font-weight: bold;
+    font-size: 2.5vw;
+    cursor: pointer;
+}
+
+.big-btn:hover {
+    background: transparent linear-gradient(180deg, #313131 0%, #262626 100%);
+}
+
+#small-screen-view {
+    display: none;
+    justify-content: center;
+}
+
+#small-screen-view #login-signup {
+    display: flex;
+    flex-direction: column;
+}
+
+#small-screen-view #login-signup * {
+    width: 40vw;
+    border: 2px solid black;
+    color: black;
+    line-height: 1.5em;
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+#small-screen-view #login-signup .signup-btn {
+    background-color: black;
+    color: white;
+}
+
+@media only screen and (max-device-width: 900px) {
+    .welcome-text {
+        font-size: 12vw;
+        text-align: center;
+        margin-bottom: 20vh;
+    }
+
+    h2 {
+        display: none;
+    }
+
+    .big-btn {
+        display: none;
+    }
+
+    #small-screen-view {
+        display: flex;
+    }
+}

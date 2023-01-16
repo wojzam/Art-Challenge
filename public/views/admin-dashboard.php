@@ -3,6 +3,7 @@
 <head>
     <?php require_once 'head.php'; ?>
     <link rel="stylesheet" type="text/css" href="/public/css/admin-dashboard.css">
+    <script type="text/javascript" src="/public/js/admin-dashboard.js" defer></script>
     <title>ADMIN DASHBOARD</title>
 </head>
 
@@ -25,7 +26,7 @@
                         <td><?= $user->getEmail(); ?></td>
                         <td><?= $user->getRole(); ?></td>
                         <td>
-                            <i class="fa-solid fa-xmark"></i>
+                            <i id="<?= $user->getId(); ?>" class="fa-solid fa-xmark"></i>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -15,11 +15,11 @@ function setHeights() {
 setHeights();
 window.onresize = setHeights;
 
-function showPopup(){
+function showPopup() {
     popup.style.display = "flex";
 }
 
-function hidePopup(){
+function hidePopup() {
     popup.style.display = "none";
 }
 
@@ -28,6 +28,10 @@ function createImagePopup() {
     popupImage.src = image.src;
     showPopup();
 }
+
 overlays.forEach(button => button.addEventListener("click", createImagePopup));
 closeButton.addEventListener("click", hidePopup);
 popup.addEventListener("click", hidePopup);
+popupImage.addEventListener('click', (event) => {
+    event.stopPropagation();
+});

@@ -20,6 +20,13 @@ class UserController extends AppController
         $this->render('settings');
     }
 
+    public function username()
+    {
+        $id_user = $this->isAuthorized();
+        $username = $this->userRepository->getUser('id_user', $id_user)->getUsername();
+        echo $username;
+    }
+
     public function changeUsername()
     {
         $this->isAuthorized();

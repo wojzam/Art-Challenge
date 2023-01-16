@@ -18,11 +18,13 @@ Router::post('search', 'ChallengeController');
 Router::get('userCollection', 'EntryController');
 Router::post('uploadEntry', 'EntryController');
 
+Router::get('username', 'UserController');
 Router::get('settings', 'UserController');
 Router::post('changeUsername', 'UserController');
 Router::post('changePassword', 'UserController');
 Router::post('deleteUser', 'UserController');
 
-Router::get('adminDashboard', 'AdminController');
+Router::get('admin', 'AdminController');
+Router::post('deleteUser', 'AdminController');
 
 Router::run($path);

@@ -18,7 +18,7 @@ body * {
 }
 
 .content-container > h1 {
-    font-size: 5em;
+    font-size: 5.5vw;
     font-weight: normal;
     margin-bottom: 15vh;
 }
@@ -36,42 +36,11 @@ main {
     padding-bottom: 10vh;
 }
 
-.home-page {
-    background-size: 100%;
-    padding-top: 10vh;
-}
-
-.welcome-text {
-    font-size: 5em;
-    font-weight: normal;
-    margin-bottom: 0.4em;
-}
-
 h2 {
-    font-size: 2.5em;
+    font-size: 2vw;
     font-weight: normal;
     margin-top: 0.4em;
     margin-bottom: 3em;
-}
-
-.big-btn {
-    background: transparent linear-gradient(180deg, #000000 0%, #262626 100%);
-    box-shadow: 0 3px 6px #00000029;
-    border-radius: 30px;
-
-    width: 400px;
-    border: none;
-    color: white;
-    line-height: 2.3em;
-
-    font-family: "Cairo", serif;
-    font-weight: bold;
-    font-size: 2.5em;
-    cursor: pointer;
-}
-
-.big-btn:hover {
-    background: transparent linear-gradient(180deg, #313131 0%, #262626 100%);
 }
 
 .form-page {
@@ -85,7 +54,7 @@ h2 {
 
 .form-page h2 {
     color: black;
-    font-size: 2.5em;
+    font-size: 2vw;
     font-weight: bold;
     margin-bottom: 2em;
     text-align: center;
@@ -99,7 +68,7 @@ h2 {
 
 .form-page h3 {
     color: black;
-    font-size: 1.5em;
+    font-size: 1.3vw;
     font-weight: normal;
     margin-bottom: 0.1em;
 }
@@ -108,7 +77,7 @@ h2 {
     background-color: lightgray;
     border: 1px solid black;
     border-radius: 20px;
-    font-size: 1.1em;
+    font-size: 1vw;
     padding: 0.7em 1em;
     margin-bottom: 0.4em;
 }
@@ -116,7 +85,7 @@ h2 {
 .form-page .file-input {
     background-color: transparent;
     border: none;
-    font-size: 1em;
+    font-size: 1vw;
     padding: 0.7em 1em;
     margin-bottom: 0.4em;
 }
@@ -126,14 +95,14 @@ h2 {
     box-shadow: 0 3px 6px #00000029;
     border-radius: 30px;
 
-    width: 350px;
+    width: 100%;
     border: none;
     color: white;
     line-height: 2em;
 
     font-family: "Cairo", serif;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3vw;
     margin-top: 3em;
     cursor: pointer;
 }
@@ -159,7 +128,7 @@ h2 {
 
     margin-top: 1em;
 
-    font-size: 1em;
+    font-size: 0.8vw;
     font-weight: lighter;
 }
 
@@ -188,4 +157,44 @@ h2 {
     border: 3px solid red !important;
     box-shadow: 0 0 0.2em red;
     outline: none;
+}
+
+@media only screen and (max-device-width: 900px) {
+    main {
+        margin-top: 10vh;
+    }
+
+    .content-container > h1 {
+        font-size: 10vw;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .form-page h2 {
+        font-size: 6vw;
+    }
+
+    .form-page h3 {
+        font-size: 4.5vw;
+    }
+
+    .form-page input {
+        font-size: 3vw;
+    }
+
+    .form-page .file-input {
+        font-size: 3vw;
+    }
+
+    .submit-btn {
+        font-size: 4.5vw;
+    }
+
+    .row-a {
+        font-size: 2.4vw;
+    }
 }

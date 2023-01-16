@@ -14,11 +14,10 @@ class AdminController extends AppController
         $this->userRepository = new UserRepository();
     }
 
-    public function adminDashboard()
+    public function admin()
     {
         $this->isAdmin();
-        $users = $this->userRepository->getAllUsers();
-        $this->render('admin-dashboard', ['users' => $users]);
+        $this->renderDashboard();
     }
 
     public function isAdmin(): int
@@ -31,14 +30,16 @@ class AdminController extends AppController
         return $id_user;
     }
 
-    public function deleteUser()
+    private function renderDashboard()
     {
-        $this->isAdmin();
-        //TODO POST id_user to delete
-        $id_user = 0;
-        $this->userRepository->deleteUser($id_user);
-
         $users = $this->userRepository->getAllUsers();
         $this->render('admin-dashboard', ['users' => $users]);
+    }
+
+    public function deleteUser($id_user)
+    {
+        $this->isAdmin();
+        $this->userRepository->deleteUser($id_user);
+        http_response_code(200);
     }
 }
