@@ -20,6 +20,7 @@
         </div>
         <div class="dropdown-content">
             <a href="settings">Settings</a>
+            <a id="admin-content" href="admin">Admin dashboard</a>
             <a href="logout">Log out</a>
         </div>
     </div>

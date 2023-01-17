@@ -20,11 +20,19 @@ class UserController extends AppController
         $this->render('settings');
     }
 
-    public function username()
+    public function user()
     {
         $id_user = $this->isAuthorized();
-        $username = $this->userRepository->getUser('id_user', $id_user)->getUsername();
-        echo $username;
+        try {
+            $user = $this->userRepository->getUser('id_user', $id_user);
+            $username = $user->getUsername();
+            $role = $user->getRole();
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo json_encode(array("loggedIn" => true, "username" => $username, "role" => $role));
+        } catch (Exception $exception) {
+            http_response_code(404);
+        }
     }
 
     public function changeUsername()

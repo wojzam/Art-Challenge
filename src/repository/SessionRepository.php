@@ -13,6 +13,8 @@ class SessionRepository extends Repository
         $stmt = $this->database->connect()->prepare('
             INSERT INTO session (id_user, token, expire)
             VALUES (?, ?, ?)
+            ON CONFLICT (id_user)
+            DO UPDATE SET token = EXCLUDED.token, expire = EXCLUDED.expire;
         ');
 
         $stmt->execute([
@@ -37,10 +39,13 @@ class SessionRepository extends Repository
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function getUserId(): ?int
     {
         $stmt = $this->database->connect()->prepare('
-                SELECT id_user FROM session WHERE token = :token
+                SELECT id_user FROM session WHERE token = :token AND expire >= now();
         ');
         $stmt->bindParam(':token', $_COOKIE["session_token"]);
         $stmt->execute();
@@ -48,7 +53,7 @@ class SessionRepository extends Repository
         $id_user = $stmt->fetchColumn();
 
         if (!$id_user) {
-            return null; //TODO throw exception
+            throw new Exception("Invalid token");
         }
 
         return $id_user;

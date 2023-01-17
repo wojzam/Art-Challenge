@@ -31,6 +31,7 @@
                     </tr>
                 <?php endforeach; ?>
             </table>
+            <a class="a-btn" href="refreshChallenges"> Auto Refresh Challenges </a>
         </div>
     </main>
 </div>

@@ -1,39 +1,40 @@
 const loginSignup = document.querySelector('#login-signup');
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const userContent = document.querySelectorAll('#user-content');
+const adminContent = document.querySelectorAll('#admin-content');
 const usernameField = document.querySelector('#username');
 
 function getLoggedInUsername() {
-    return fetch('/username')
-        .then(response => {
-            let loggedIn = false;
-            if (response.status === 200) {
-                loggedIn = true;
-            }
-            return response.text().then(username => {
-                return {loggedIn, username};
-            });
+    return fetch('/user')
+        .then(response => response.json())
+        .then(data => {
+            return data;
         })
         .catch(() => {
-            return {username: '', loggedIn: false};
+            return {loggedIn: false, username: '', role: ''};
         });
 }
 
-function applyStyles(loggedIn, username) {
+function applyStyles(user) {
     if (window.innerWidth <= 1000) {
         userContent.forEach(element => element.style.display = "none");
         loginSignup.style.display = "none";
         hamburgerMenu.style.display = "block";
     } else {
-        if (loggedIn) {
+        if (user.loggedIn) {
             userContent.forEach(element => element.style.display = "block");
             loginSignup.style.display = "none";
-            usernameField.innerHTML = username;
+            usernameField.innerHTML = user.username;
         } else {
             userContent.forEach(element => element.style.display = "none");
             loginSignup.style.display = "flex";
         }
         hamburgerMenu.style.display = "none";
+    }
+    if (user.role === 'admin') {
+        adminContent.forEach(element => element.style.display = "block");
+    } else {
+        adminContent.forEach(element => element.style.display = "none");
     }
 }
 
@@ -41,12 +42,11 @@ function openMenu() {
     alert("menu"); //TODO open menu
 }
 
-getLoggedInUsername().then(({loggedIn, username}) => {
-    console.log(username, loggedIn);
-    applyStyles(loggedIn, username);
+getLoggedInUsername().then((user) => {
+    applyStyles(user);
 
     window.addEventListener("resize", function () {
-        applyStyles(loggedIn, username);
+        applyStyles(user);
     });
 });
 

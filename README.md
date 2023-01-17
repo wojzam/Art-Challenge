@@ -3,7 +3,8 @@
 Welcome to Art Challenge, a web application where users can participate in daily and weekly drawing/painting challenges.
 Each challenge will have a specific topic and users can submit their entries.
 Once the challenge is completed, users can vote on their favorite entries.
-Everyone, including non-registered users, can browse completed challenges and view entries, but only registered users can vote.
+Everyone, including non-registered users, can browse completed challenges and view entries, but only registered users
+can vote.
 Each registered user has the option to view their personal gallery containing all their entries.
 
 ## Features

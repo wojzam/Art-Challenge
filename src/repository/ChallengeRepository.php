@@ -64,4 +64,38 @@ class ChallengeRepository extends Repository
 
         return $result;
     }
+
+    public function getExpiredChallengesTypes(): array
+    {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare("
+            SELECT * FROM challenges_expired;
+        ");
+        $stmt->execute();
+        $challenges = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($challenges as $challenge) {
+            $result[] = $challenge['id_type'];
+        }
+
+        return $result;
+    }
+
+    public function startReadyChallengeOfType(int $type)
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT start_ready_challenge(:type);
+        ');
+        $stmt->bindParam(':type', $type);
+        $stmt->execute();
+    }
+
+    public function endAllFinishedChallenges()
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT end_finished_challenges();
+        ');
+        $stmt->execute();
+    }
 }

@@ -41,10 +41,9 @@ class AppController
     protected function isAuthorized(): int
     {
         if (isset($_COOKIE["session_token"])) {
-            $id_user = $this->sessionRepository->getUserId();
-            if ($id_user) {
-                return $id_user;
-            } else {
+            try {
+                return $this->sessionRepository->getUserId();
+            } catch (Exception $exception) {
                 http_response_code(401);
                 exit;
             }

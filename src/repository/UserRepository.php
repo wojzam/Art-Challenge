@@ -8,10 +8,18 @@ class UserRepository extends Repository
 
     public function userExists(string $column, string $value): bool
     {
-        $user = $this->getUser($column, $value);
+        try {
+            $user = $this->getUser($column, $value);
+        } catch (Exception $exception) {
+            return false;
+        }
+
         return boolval($user);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getUser(string $column, string $value): ?User
     {
         $query = 'SELECT * FROM "user" JOIN role r on r.id_role = "user".id_role WHERE ' . $column . ' = :value LIMIT 1';
@@ -22,7 +30,7 @@ class UserRepository extends Repository
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
-            return null; //TODO throw exception
+            throw new Exception("User not found with " . $column . " = " . $value);
         }
 
         return new User(
