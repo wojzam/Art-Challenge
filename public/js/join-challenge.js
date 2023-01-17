@@ -1,17 +1,27 @@
-const dailyTab = document.querySelector('#tab-daily');
-const weeklyTab = document.querySelector('#tab-weekly');
+const challengesContainer = document.querySelector("#challenges");
 
-function openDailyTab() {
-    dailyTab.classList.add('selected');
-    weeklyTab.classList.remove('selected');
+function loadChallenges(challenges) {
+    challenges.forEach(challenge => {
+        createChallenge(challenge);
+    });
 }
 
-function openWeeklyTab() {
-    weeklyTab.classList.add('selected');
-    dailyTab.classList.remove('selected');
+function createChallenge(challenge) {
+    const template = document.querySelector("#challenge-template");
+    const clone = template.content.cloneNode(true);
+
+    const idInput = clone.querySelector("#id_challenge");
+    idInput.value = challenge.id;
+    const title = clone.querySelector("h2");
+    title.innerHTML = challenge.topic;
+    const image = clone.querySelector("img");
+    image.src = `/public/img/${challenge.image}`;
+
+    challengesContainer.appendChild(clone);
 }
 
-openDailyTab();
-
-dailyTab.addEventListener('click', openDailyTab);
-weeklyTab.addEventListener('click', openWeeklyTab);
+fetch('/ongoingChallenges')
+    .then(response => response.json())
+    .then(data => {
+        loadChallenges(data);
+    });

@@ -28,6 +28,7 @@ class EntryController extends AppController
     public function uploadEntry()
     {
         $id_user = $this->isAuthorized();
+
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
             $file_extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
             $random_file_name = 'uploads/' . uniqid() . '.' . $file_extension;
@@ -35,8 +36,8 @@ class EntryController extends AppController
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__) . self::UPLOAD_DIRECTORY . $random_file_name
             );
-            //TODO Title should be set
-            $entry = new Entry(7, $id_user, "title", $random_file_name);
+            $id_challenge =  $_POST['id_challenge'];
+            $entry = new Entry($id_challenge, $id_user, "title", $random_file_name);
             $this->deleteConflictingEntries($entry);
             $this->entryRepository->addEntry($entry);
 
@@ -63,7 +64,7 @@ class EntryController extends AppController
     {
         $image = $this->entryRepository->getConflictingEntryImage($entry);
         $file = dirname(__DIR__) . self::UPLOAD_DIRECTORY . $image;
-        if (file_exists($file)) {
+        if ($image && file_exists($file)) {
             unlink($file);
         }
         $this->entryRepository->deleteConflictingEntries($entry);

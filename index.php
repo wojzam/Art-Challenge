@@ -13,7 +13,7 @@ Router::post('signup', 'SecurityController');
 
 Router::get('joinChallenge', 'ChallengeController');
 Router::get('explore', 'ChallengeController');
-Router::post('search', 'ChallengeController');
+Router::get('ongoingChallenges', 'ChallengeController');
 
 Router::get('userCollection', 'EntryController');
 Router::post('uploadEntry', 'EntryController');

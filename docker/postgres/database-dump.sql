@@ -65,6 +65,23 @@ $$;
 ALTER FUNCTION public.end_finished_challenges() OWNER TO dbuser;
 
 --
+-- Name: get_user_entries(integer); Type: FUNCTION; Schema: public; Owner: dbuser
+--
+
+CREATE FUNCTION public.get_user_entries(id integer) RETURNS TABLE(id_challenge integer, image character varying)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    RETURN QUERY SELECT c.id_challenge, entry.image FROM entry
+    RIGHT JOIN challenge c on c.id_challenge = entry.id_challenge
+    WHERE id_owner IS NULL OR id_owner = id;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_user_entries(id integer) OWNER TO dbuser;
+
+--
 -- Name: start_ready_challenge(integer); Type: FUNCTION; Schema: public; Owner: dbuser
 --
 
@@ -100,6 +117,51 @@ CREATE TABLE public.challenge (
 
 
 ALTER TABLE public.challenge OWNER TO dbuser;
+
+--
+-- Name: entry; Type: TABLE; Schema: public; Owner: dbuser
+--
+
+CREATE TABLE public.entry (
+    id_entry integer NOT NULL,
+    id_owner integer NOT NULL,
+    id_challenge integer NOT NULL,
+    image character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.entry OWNER TO dbuser;
+
+--
+-- Name: user; Type: TABLE; Schema: public; Owner: dbuser
+--
+
+CREATE TABLE public."user" (
+    id_user integer NOT NULL,
+    username character varying(64) NOT NULL,
+    email character varying(64) NOT NULL,
+    password character varying(64) NOT NULL,
+    id_role integer NOT NULL
+);
+
+
+ALTER TABLE public."user" OWNER TO dbuser;
+
+--
+-- Name: challenge_entries; Type: VIEW; Schema: public; Owner: dbuser
+--
+
+CREATE VIEW public.challenge_entries AS
+ SELECT c.topic,
+    e.image,
+    u.username
+   FROM ((public.challenge c
+     LEFT JOIN public.entry e ON ((c.id_challenge = e.id_challenge)))
+     LEFT JOIN public."user" u ON ((u.id_user = e.id_owner)))
+  ORDER BY c.topic;
+
+
+ALTER TABLE public.challenge_entries OWNER TO dbuser;
 
 --
 -- Name: challenge_id_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
@@ -222,20 +284,6 @@ CREATE VIEW public.challenges_ready AS
 ALTER TABLE public.challenges_ready OWNER TO dbuser;
 
 --
--- Name: entry; Type: TABLE; Schema: public; Owner: dbuser
---
-
-CREATE TABLE public.entry (
-    id_entry integer NOT NULL,
-    id_owner integer NOT NULL,
-    id_challenge integer NOT NULL,
-    image character varying(255) NOT NULL
-);
-
-
-ALTER TABLE public.entry OWNER TO dbuser;
-
---
 -- Name: entry_id_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
 --
 
@@ -315,21 +363,6 @@ CREATE TABLE public.session (
 
 
 ALTER TABLE public.session OWNER TO dbuser;
-
---
--- Name: user; Type: TABLE; Schema: public; Owner: dbuser
---
-
-CREATE TABLE public."user" (
-    id_user integer NOT NULL,
-    username character varying(64) NOT NULL,
-    email character varying(64) NOT NULL,
-    password character varying(64) NOT NULL,
-    id_role integer NOT NULL
-);
-
-
-ALTER TABLE public."user" OWNER TO dbuser;
 
 --
 -- Name: user_id_role_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
@@ -435,13 +468,13 @@ ALTER TABLE ONLY public."user" ALTER COLUMN id_user SET DEFAULT nextval('public.
 --
 
 COPY public.challenge (id_challenge, id_type, topic, start_date, id_status) FROM stdin;
-5	1	Face	2023-01-01	3
 4	2	River running through a city	2023-01-08	3
 7	1	Apples	2023-01-02	3
 3	2	Beach scene with palm trees	\N	1
 8	2	Landscape with a mountain and a lake	\N	1
 6	1	Bird on a branch	\N	1
 1	1	Cat	2023-01-17	2
+5	1	Face	2023-01-01	3
 2	2	Cityscape at sunset	2023-01-15	2
 \.
 
@@ -472,9 +505,6 @@ COPY public.challenge_type (id_type, name, duration) FROM stdin;
 --
 
 COPY public.entry (id_entry, id_owner, id_challenge, image) FROM stdin;
-14	1	2	examples/cityscape_at_sunset.png
-15	1	5	examples/face.png
-27	1	1	examples/cat_1.png
 28	23	4	uploads/63c523f4ac87d.png
 30	23	5	uploads/63c5245e2a539.png
 31	23	7	uploads/63c5247814299.png
@@ -483,7 +513,9 @@ COPY public.entry (id_entry, id_owner, id_challenge, image) FROM stdin;
 35	25	5	uploads/63c52d2f2d0a9.jpg
 36	25	4	uploads/63c52d501bebe.jpg
 37	25	7	uploads/63c52dabe2861.png
-43	1	7	uploads/63c532ca2e502.png
+57	1	2	uploads/63c6b6550ae64.jpg
+59	1	1	uploads/63c6bd0a05c58.jpg
+60	1	5	uploads/63c6bd1347e25.jpg
 \.
 
 
@@ -510,7 +542,7 @@ COPY public.role (id_role, name) FROM stdin;
 --
 
 COPY public.session (id_user, token, expire) FROM stdin;
-1	9af281fc3386ba87f900006c0b649ddafabaa4c1fe614c5708cb47f6ed867af4	2023-01-18 12:59:32
+1	9fb2d4babb3cb7bdf0331d23774b80e5f8a9b7cd2a0184d4cfe54f6e81f7ad92	2023-01-18 14:35:56
 \.
 
 
@@ -559,7 +591,7 @@ SELECT pg_catalog.setval('public.challenge_type_id_seq', 3, true);
 -- Name: entry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.entry_id_seq', 45, true);
+SELECT pg_catalog.setval('public.entry_id_seq', 60, true);
 
 
 --

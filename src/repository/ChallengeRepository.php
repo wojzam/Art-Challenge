@@ -45,24 +45,20 @@ class ChallengeRepository extends Repository
         return $result;
     }
 
-    public function getCurrentChallenges(): array
+    public function getOngoingChallenges(int $id_user)
     {
-        $result = [];
-
         $stmt = $this->database->connect()->prepare("
-            SELECT * FROM challenge JOIN challenge_status s on s.id_status = challenge.id_status WHERE s.name = 'ongoing';
+           SELECT c.id_challenge as id, topic, start_date, ct.duration, e.image FROM challenge c
+           LEFT JOIN get_user_entries(:id) e on c.id_challenge = e.id_challenge
+           JOIN challenge_status s on s.id_status = c.id_status
+           JOIN challenge_type ct on ct.id_type = c.id_type
+           WHERE s.name = 'ongoing'
+           ORDER BY c.id_type;
         ");
+        $stmt->bindParam(':id', $id_user);
         $stmt->execute();
-        $challenges = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($challenges as $challenge) {
-            $result[] = new Challenge(
-                $challenge['topic'],
-                []
-            );
-        }
-
-        return $result;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getExpiredChallengesTypes(): array

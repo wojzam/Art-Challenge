@@ -1,21 +1,23 @@
-.tab-menu {
+#challenges {
+    margin-top: 0;
+}
+
+#challenges div {
     display: flex;
-    column-gap: 2em;
-    margin-bottom: 2em;
-    font-size: 1.2em;
-    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.tab-menu *:hover {
-    color: #005247;
-}
-
-.selected {
-    color: #00bda2;
+#challenges form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8em;
 }
 
 .challenge-topic {
-    margin-top: 1em;
     font-size: 4em;
     margin-bottom: 0;
 }
@@ -24,5 +26,9 @@
     color: #005247;
     font-size: 1.5em;
     font-weight: lighter;
-    margin-bottom: 2em;
+}
+
+.uploaded{  
+    max-height: 50vh;
+    border-radius: 1em;
 }

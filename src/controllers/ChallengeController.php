@@ -15,8 +15,16 @@ class ChallengeController extends EntryController
     public function joinChallenge()
     {
         $this->isAuthorized();
-        $challenges = $this->challengeRepository->getCurrentChallenges();
-        $this->render('join-challenge', ['challenges' => $challenges]);
+        $this->render('join-challenge');
+    }
+
+    public function ongoingChallenges(){
+        $id_user = $this->isAuthorized();
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($this->challengeRepository->getOngoingChallenges($id_user));
     }
 
     public function explore()
