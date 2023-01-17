@@ -23,7 +23,10 @@
 <template id="challenge-template">
     <div>
         <h2 class="challenge-topic">topic</h2>
-        <h3 class="counter">time-left</h3>
+        <div class="counter">
+            <h3>Time left:&nbsp</h3>
+            <h3 id="time-left">0</h3>
+        </div>
         <h3>YOUR ENTRY</h3>
         <img class="uploaded" src="">
         <form action="uploadEntry" method="POST" enctype="multipart/form-data">

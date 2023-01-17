@@ -18,7 +18,8 @@ class ChallengeController extends EntryController
         $this->render('join-challenge');
     }
 
-    public function ongoingChallenges(){
+    public function ongoingChallenges()
+    {
         $id_user = $this->isAuthorized();
 
         header('Content-type: application/json');

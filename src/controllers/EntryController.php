@@ -36,7 +36,7 @@ class EntryController extends AppController
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__) . self::UPLOAD_DIRECTORY . $random_file_name
             );
-            $id_challenge =  $_POST['id_challenge'];
+            $id_challenge = $_POST['id_challenge'];
             $entry = new Entry($id_challenge, $id_user, "title", $random_file_name);
             $this->deleteConflictingEntries($entry);
             $this->entryRepository->addEntry($entry);

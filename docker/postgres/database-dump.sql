@@ -473,9 +473,17 @@ COPY public.challenge (id_challenge, id_type, topic, start_date, id_status) FROM
 3	2	Beach scene with palm trees	\N	1
 8	2	Landscape with a mountain and a lake	\N	1
 6	1	Bird on a branch	\N	1
-1	1	Cat	2023-01-17	2
 5	1	Face	2023-01-01	3
 2	2	Cityscape at sunset	2023-01-15	2
+24	1	Robot with a flower	\N	1
+25	1	Hot air balloon in the sky	\N	1
+26	1	Cup of coffee and a book	\N	1
+27	1	Spaceship in the galaxy	\N	1
+28	1	Tiger in jungle	\N	1
+29	1	Penguin on ice	\N	1
+30	2	Dragon in the clouds	\N	1
+31	2	Castle in the mountains	\N	1
+1	1	Cat	2023-01-17	2
 \.
 
 
@@ -516,6 +524,8 @@ COPY public.entry (id_entry, id_owner, id_challenge, image) FROM stdin;
 57	1	2	uploads/63c6b6550ae64.jpg
 59	1	1	uploads/63c6bd0a05c58.jpg
 60	1	5	uploads/63c6bd1347e25.jpg
+61	23	1	uploads/63c6be2bf3737.jpg
+67	23	2	uploads/63c6dd62ab4db.png
 \.
 
 
@@ -542,7 +552,6 @@ COPY public.role (id_role, name) FROM stdin;
 --
 
 COPY public.session (id_user, token, expire) FROM stdin;
-1	9fb2d4babb3cb7bdf0331d23774b80e5f8a9b7cd2a0184d4cfe54f6e81f7ad92	2023-01-18 14:35:56
 \.
 
 
@@ -570,7 +579,7 @@ COPY public.vote (id_user, id_challenge, id_entry) FROM stdin;
 -- Name: challenge_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.challenge_id_seq', 23, true);
+SELECT pg_catalog.setval('public.challenge_id_seq', 31, true);
 
 
 --
@@ -591,7 +600,7 @@ SELECT pg_catalog.setval('public.challenge_type_id_seq', 3, true);
 -- Name: entry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.entry_id_seq', 60, true);
+SELECT pg_catalog.setval('public.entry_id_seq', 67, true);
 
 
 --

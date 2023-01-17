@@ -1,5 +1,9 @@
 #challenges {
     margin-top: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 20%;
 }
 
 #challenges div {
@@ -17,18 +21,48 @@
     margin-bottom: 8em;
 }
 
-.challenge-topic {
-    font-size: 4em;
-    margin-bottom: 0;
+#challenges .counter {
+    flex-direction: row;
 }
 
 .counter {
+    display: none;
+}
+
+.counter h3 {
     color: #005247;
     font-size: 1.5em;
     font-weight: lighter;
 }
 
-.uploaded{  
+.challenge-topic {
+    font-size: 4em;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.uploaded {
     max-height: 50vh;
     border-radius: 1em;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.messages {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media only screen and (max-device-width: 900px) {
+    .counter h3, h3 {
+        font-size: 4.5vw;
+    }
+
+    .challenge-topic {
+        font-size: 12vw;
+    }
 }
