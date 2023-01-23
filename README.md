@@ -15,21 +15,34 @@ Each registered user has the option to view their personal gallery containing al
 - Explore page with all challenges and entries
 - Private user gallery with uploaded entires
 
-# How to participate
+## Requirements:
 
-- Register for an account on the website
-- Check the current challenges
-- Create your artwork and upload to the platform
-- Once the challenge is completed, vote on your favorite entry
+ - [Docker](https://www.docker.com/)
 
-# Voting
+## Installation
 
-Users can vote on their favorite entries once the challenge is completed.
-There is only one vote for each user per challenge.
-The top three entries with the most votes will be distinguished.
-The exact number of votes for each entry is hidden.
+1. Clone the repository from Github:
 
-# Technical details
+       git clone https://github.com/wojzam/wdpai.git
+    
+2. In the root directory of the cloned repository, run the following command to build the Docker images:
+
+       docker-compose build
+    
+## Running the App
+
+1. Run the following command to start the app:
+
+       docker-compose up
+    
+    Once the app is set up, you can access it by visiting http://localhost:8080 in your web browser.
+
+2. To stop the app, you can use the following command:
+
+       docker-compose down
+
+## Technical details
 
 - Technology stack: PHP, HTML, CSS, JavaScript
 - Database: PostgreSQL
+- Containerization: Docker
