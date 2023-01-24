@@ -10,18 +10,4 @@ class DefaultController extends AppController
         $this->render('home');
     }
 
-    public function userCollection()
-    {
-        $this->render('user-collection');
-    }
-
-    public function dashboard()
-    {
-        $this->render('dashboard');
-    }
-
-    public function joinChallenge()
-    {
-        $this->render('join-challenge');
-    }
 }

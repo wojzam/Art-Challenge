@@ -3,37 +3,34 @@ header {
     height: 80px;
     position: fixed;
     top: 0;
+    z-index: 1000;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     background-color: #212121;
-    font-family: "Aleo", serif;
-    color: white;
 }
 
 header * {
-    font-family: inherit;
-    color: inherit;
+    font-family: "Aleo", serif;
+    color: white;
+    font-weight: normal;
 }
 
 .navbar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-weight: normal;
 }
 
-.title-container .title {
+.page-title-container .page-title {
     margin-left: 0.8em;
     margin-right: 1.5em;
     font-size: 2em;
     font-weight: bold;
     padding: 0;
     white-space: nowrap;
-}
-
-.title-container .title:hover {
-    color: white;
 }
 
 .navbar a {
@@ -47,22 +44,20 @@ header * {
     margin: 0;
     white-space: nowrap;
     cursor: pointer;
-    transition: all 0.3s ease-out;
 }
 
 .navbar a:hover {
     color: #C3FCF1;
 }
 
-.nav-btn {
-    display: flex;
-}
-
-.nav-btn a {
+#login-signup a {
+    display: inline-block;
+    width: 80px;
     border: 2px solid white;
-    border-radius: 20px;
+    border-radius: 1em;
     padding: 0.4em 2.2em;
     margin: 0.3em;
+    text-align: center;
     line-height: 1em;
     text-decoration: none;
     font-size: 1.4em;
@@ -80,17 +75,24 @@ header * {
     color: black;
 }
 
-.dropdown {
+.user-dropdown {
     padding: 2em;
-    margin: 0.7em 2.2em;
+    margin: 0.7em 1em;
 }
 
-.dropbtn {
-    border: none;
-    outline: none;
+.drop-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 0.5em;
+    min-width: 160px;
     font-size: 1.4em;
     background-color: inherit;
     cursor: pointer;
+}
+
+.drop-btn:hover * {
+    color: #C3FCF1;
 }
 
 .dropdown-content {
@@ -117,6 +119,27 @@ header * {
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.user-dropdown:hover .dropdown-content {
     display: block;
+}
+
+#user-content, #login-signup, #admin-content {
+    display: none;
+}
+
+.hamburger-menu {
+    display: none;
+    color: white;
+    font-size: 3vh;
+    padding: 2em;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    .navbar, #login-signup, .user-dropdown {
+        display: none;
+    }
+
+    header {
+        height: 10vh;
+    }
 }

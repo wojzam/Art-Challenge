@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/header.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
-    <title>LOGIN PAGE</title>
+    <?php require_once 'head.php'; ?>
+    <title>LOGIN</title>
 </head>
 
 <body>
 <div class="container">
-    <?php include 'header.php'; ?>
+    <?php require_once 'header.php'; ?>
     <main class="form-page">
         <div>
             <h2>Login</h2>
-            <form class="login" action="login" method="POST">
-                <div class="messages">
-                    <?php
-                    if (isset($messages)) {
-                        foreach ($messages as $message) {
-                            echo $message;
-                        }
-                    }
-                    ?>
-                </div>
+            <form action="login" method="POST">
+                <?php include 'message-display.php'; ?>
                 <h3>Email</h3>
-                <input name="email" type="text">
+                <input name="email" type="text" required>
                 <h3>Password</h3>
-                <input name="password" type="password">
-                <button type="submit">LOGIN</button>
+                <input name="password" type="password" required>
+                <button class="submit-btn" type="submit">LOGIN</button>
                 <div class="row-a">
                     <p>Don't have an account? Sign up for&nbsp</p>
                     <a href="signup">ArtChallenge</a>

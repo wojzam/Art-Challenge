@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5em;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #00bda2;
+    font-weight: bold;
+}
+
+tr td:last-child {
+    width: 60px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.fa-xmark {
+    scale: 200%;
+    color: darkred;
+    cursor: pointer;
+}
+
+.fa-xmark:hover {
+    color: red;
+}
+
+.a-btn {
+    width: 80px;
+    background-color: #005247;
+    color: white;
+    border-radius: 2em;
+    padding: 0.4em 2.2em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.4em;
+    cursor: pointer;
+}

@@ -2,15 +2,31 @@ body {
     margin: 0;
 }
 
+body * {
+    font-family: "Aleo", serif;
+    transition: all 0.3s ease;
+}
+
 .container {
     display: flex;
     flex-direction: column;
 }
 
+.content-container {
+    margin-top: 3em;
+    width: 80%;
+}
+
+.content-container > h1 {
+    font-size: 5.5vw;
+    font-weight: normal;
+    margin-bottom: 15vh;
+}
+
 main {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, #FF9700 0%, white 100%) 0% 0% no-repeat padding-box;
+    background: linear-gradient(180deg, #FF9700 0%, white 100%) 0 0 no-repeat padding-box;
     background-size: 100% 300px;
     margin-top: 80px;
     display: flex;
@@ -20,44 +36,11 @@ main {
     padding-bottom: 10vh;
 }
 
-.home-page {
-    background-size: 100%;
-    padding-top: 10vh;
-}
-
-h1 {
-    font-size: 5em;
-    font-family: "Aleo";
-    font-weight: normal;
-    margin-bottom: 0.4em;
-}
-
 h2 {
-    font-size: 2.5em;
-    font-family: "Aleo";
+    font-size: 2vw;
     font-weight: normal;
     margin-top: 0.4em;
     margin-bottom: 3em;
-}
-
-.big-btn {
-    background: transparent linear-gradient(180deg, #000000 0%, #262626 100%) 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 30px;
-
-    width: 400px;
-    border: none;
-    color: white;
-    line-height: 2.3em;
-
-    font-family: "Cairo";
-    font-weight: bold;
-    font-size: 2.5em;
-    cursor: pointer;
-}
-
-.big-btn:hover {
-    background: #262626;
 }
 
 .form-page {
@@ -71,10 +54,10 @@ h2 {
 
 .form-page h2 {
     color: black;
-    font-size: 2.5em;
-    font-family: "Aleo";
+    font-size: 2vw;
     font-weight: bold;
     margin-bottom: 2em;
+    text-align: center;
 }
 
 .form-page form {
@@ -85,37 +68,57 @@ h2 {
 
 .form-page h3 {
     color: black;
-    font-size: 1.5em;
-    font-family: "Aleo";
+    font-size: 1.3vw;
     font-weight: normal;
     margin-bottom: 0.1em;
 }
 
 .form-page input {
-    background-color: transparent;
+    background-color: lightgray;
     border: 1px solid black;
     border-radius: 20px;
-    background-color: lightgray;
-    font-size: 1.1em;
+    font-size: 1vw;
     padding: 0.7em 1em;
     margin-bottom: 0.4em;
 }
 
-.form-page button {
+.form-page .file-input {
+    background-color: transparent;
+    border: none;
+    font-size: 1vw;
+    padding: 0.7em 1em;
+    margin-bottom: 0.4em;
+}
+
+.submit-btn {
     background: #005247;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0 3px 6px #00000029;
     border-radius: 30px;
 
-    width: 350px;
+    width: 100%;
     border: none;
     color: white;
     line-height: 2em;
 
-    font-family: "Cairo";
+    font-family: "Cairo", serif;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3vw;
     margin-top: 3em;
     cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #00bda2;
+}
+
+.dark-version {
+    background: black;
+    margin-top: 1.5em;
+    margin-bottom: 4em;
+}
+
+.dark-version:hover {
+    background: #005247;
 }
 
 .row-a {
@@ -125,7 +128,73 @@ h2 {
 
     margin-top: 1em;
 
-    font-size: 1em;
-    font-family: "Aleo";
+    font-size: 0.8vw;
     font-weight: lighter;
+}
+
+.row-a a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.messages * {
+    width: 350px;
+    text-align: center;
+}
+
+.info-message {
+    color: black;
+    font-size: 1.4em;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.no-valid {
+    border: 3px solid red !important;
+    box-shadow: 0 0 0.2em red;
+    outline: none;
+}
+
+@media only screen and (max-device-width: 900px) {
+    main {
+        margin-top: 10vh;
+    }
+
+    .content-container > h1 {
+        font-size: 10vw;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .form-page h2 {
+        font-size: 6vw;
+    }
+
+    .form-page h3 {
+        font-size: 4.5vw;
+    }
+
+    .form-page input {
+        font-size: 3vw;
+    }
+
+    .form-page .file-input {
+        font-size: 3vw;
+    }
+
+    .submit-btn {
+        font-size: 4.5vw;
+    }
+
+    .row-a {
+        font-size: 2.4vw;
+    }
 }

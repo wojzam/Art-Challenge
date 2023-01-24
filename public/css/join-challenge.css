@@ -1,41 +1,68 @@
-main {
-    align-items: flex-start;
-}
-
-.content-container {
-    margin: 3em 5em;
-}
-
-.content-container > h1 {
-    margin-bottom: 10vh;
-}
-
-.content-container > div {
+#challenges {
+    margin-top: 0;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 20%;
+}
+
+#challenges div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin: 35px 0px;
 }
 
-.big-btn {
-    background: #005247;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 30px;
-
-    width: 400px;
-    border: none;
-    color: white;
-    line-height: 2.3em;
-
-    font-family: "Aleo";
-    font-weight: bold;
-    font-size: 2.5em;
+#challenges form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8em;
 }
 
-.description {
+#challenges .counter {
+    flex-direction: row;
+}
+
+.counter {
+    display: none;
+}
+
+.counter h3 {
     color: #005247;
-    font-size: 2.5em;
-    font-family: "Aleo";
+    font-size: 1.5em;
     font-weight: lighter;
-    margin-left: 1.5em;
+}
+
+.challenge-topic {
+    font-size: 4em;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.uploaded {
+    max-height: 50vh;
+    border-radius: 1em;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.messages {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media only screen and (max-device-width: 900px) {
+    .counter h3, h3 {
+        font-size: 4.5vw;
+    }
+
+    .challenge-topic {
+        font-size: 12vw;
+    }
 }

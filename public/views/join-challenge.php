@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/header.css">
-    <link rel="stylesheet" type="text/css" href="public/css/join-challenge.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <?php require_once 'head.php'; ?>
+    <link rel="stylesheet" type="text/css" href="/public/css/join-challenge.css">
+    <script type="text/javascript" src="/public/js/join-challenge.js" defer></script>
     <title>JOIN CHALLENGE</title>
 </head>
 
 <body>
 <div class="container">
-    <?php include 'header.php'; ?>
+    <?php require_once 'header.php'; ?>
     <main>
         <div class="content-container">
             <h1>Join challenge</h1>
-            <div>
-                <button class="big-btn">Quick</button>
-                <p class="description">three hours</p>
-            </div>
-            <div>
-                <button class="big-btn">Normal</button>
-                <p class="description">one day</p>
-            </div>
-            <div>
-                <button class="big-btn">Marathon</button>
-                <p class="description">one week</p>
-            </div>
+            <?php include 'message-display.php'; ?>
+            <section id="challenges"></section>
         </div>
     </main>
 </div>
 </body>
+
+<template id="challenge-template">
+    <div>
+        <h2 class="challenge-topic">topic</h2>
+        <div class="counter">
+            <h3>Time left:&nbsp</h3>
+            <h3 id="time-left">0</h3>
+        </div>
+        <h3>YOUR ENTRY</h3>
+        <img class="uploaded" src="">
+        <form action="uploadEntry" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id_challenge" id="id_challenge" value="">
+            <input type="file" name="file"/><br/>
+            <button class="submit-btn" type="submit">UPLOAD</button>
+        </form>
+    </div>
+</template>
