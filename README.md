@@ -50,3 +50,13 @@ Each registered user has the option to view their personal gallery containing al
 ### Database ERD
 
 ![database-erd](/ERD.png)
+
+## Screenshots
+
+![screen-home](/public/img/screenshots/screen_home.jpg)
+
+![screen-join](/public/img/screenshots/screen_join.jpg)
+
+![screen-collection](/public/img/screenshots/screen_collection.jpg)
+
+![screen-explore](/public/img/screenshots/screen_explore.jpg)
