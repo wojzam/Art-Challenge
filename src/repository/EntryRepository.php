@@ -52,7 +52,8 @@ class EntryRepository extends Repository
 
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM entry JOIN challenge c on c.id_challenge = entry.id_challenge
-                     WHERE entry.id_owner = :id;
+                     WHERE entry.id_owner = :id
+                     ORDER BY c.start_date DESC;
         ');
         $stmt->bindParam(':id', $id_user, PDO::PARAM_INT);
         $stmt->execute();

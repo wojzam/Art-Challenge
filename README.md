@@ -17,25 +17,25 @@ Each registered user has the option to view their personal gallery containing al
 
 ## Requirements:
 
- - [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/)
 
 ## Installation
 
 1. Clone the repository from Github:
 
        git clone https://github.com/wojzam/wdpai.git
-    
+
 2. In the root directory of the cloned repository, run the following command to build the Docker images:
 
        docker-compose build
-    
+
 ## Running the App
 
 1. Run the following command to start the app:
 
        docker-compose up
-    
-    Once the app is set up, you can access it by visiting http://localhost:8080 in your web browser.
+
+   Once the app is set up, you can access it by visiting http://localhost:8080 in your web browser.
 
 2. To stop the app, you can use the following command:
 

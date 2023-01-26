@@ -39,7 +39,7 @@ function applyStyles(user) {
 }
 
 function openMenu() {
-    alert("menu"); //TODO open menu
+    alert("menu");
 }
 
 getLoggedInUsername().then((user) => {
