@@ -38,11 +38,6 @@
     border-radius: 1em;
 }
 
-.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-}
-
 .messages {
     display: flex;
     align-items: center;
