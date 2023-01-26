@@ -33,10 +33,11 @@ function getEndDate(challenge) {
 function updateCounter(counter, endTime, button) {
     const timeLeft = calculateTimeLeft(endTime);
     if (timeLeft === '') {
-        counter.innerHTML = "none";
+        counter.innerHTML = "Completed";
+        counter.style.color = "red";
         button.classList.add("disabled");
     } else {
-        counter.innerHTML = timeLeft;
+        counter.innerHTML = "Time left: " + timeLeft;
     }
 }
 

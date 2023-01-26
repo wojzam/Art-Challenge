@@ -21,15 +21,7 @@
     margin-bottom: 8em;
 }
 
-#challenges .counter {
-    flex-direction: row;
-}
-
-.counter {
-    display: none;
-}
-
-.counter h3 {
+#time-left {
     color: #005247;
     font-size: 1.5em;
     font-weight: lighter;
@@ -58,7 +50,7 @@
 }
 
 @media only screen and (max-device-width: 900px) {
-    .counter h3, h3 {
+    #time-left {
         font-size: 4.5vw;
     }
 
