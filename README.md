@@ -46,3 +46,7 @@ Each registered user has the option to view their personal gallery containing al
 - Technology stack: PHP, HTML, CSS, JavaScript
 - Database: PostgreSQL
 - Containerization: Docker
+
+### Database ERD
+
+![database-erd](/ERD.png)
