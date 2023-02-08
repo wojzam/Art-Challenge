@@ -1,19 +1,16 @@
 # Art Challenge
 
-Welcome to Art Challenge, a web application where users can participate in daily and weekly drawing/painting challenges.
-Each challenge will have a specific topic and users can submit their entries.
+Welcome to Art Challenge, a web application where users can participate in art challenges.
+All techniques like drawing, painting, and digital art are allowed.
 Once the challenge is completed, users can vote on their favorite entries.
-Everyone, including non-registered users, can browse completed challenges and view entries, but only registered users
-can vote.
-Each registered user has the option to view their personal gallery containing all their entries.
 
 ## Features
 
-- Daily and weekly challenges with different themes
+- Daily and weekly challenges with unique themes
 - Users can upload their entries for ongoing challenges
 - Voting system for users to vote on their favorite entries
 - Explore page with all challenges and entries
-- Private user gallery with uploaded entires
+- Private user gallery
 
 ## Requirements:
 
@@ -60,3 +57,10 @@ Each registered user has the option to view their personal gallery containing al
 ![screen-collection](/public/img/screenshots/screen_collection.jpg)
 
 ![screen-explore](/public/img/screenshots/screen_explore.jpg)
+
+## TODO
+
+- [ ] Add moderator role, which can add and manage challenges
+- [ ] Implement voting system
+- [ ] Improve mobile version (hamburger menu)
+- [ ] Clean up local files after user account deletion etc.
